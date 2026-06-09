@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applications — SightwiseTech</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #0099cc; --r-sm: 6px; --r-md: 10px; --r-lg: 16px;
+  --mono: 'Share Tech Mono', monospace; --sans: 'Barlow', sans-serif; --cond: 'Barlow Condensed', sans-serif;
+}
+[data-theme="light"] { --bg: #f7f8fa; --bg2: #ffffff; --bg3: #eef0f4; --island: #12151a; --island2: #191d24; --island3: #1f242d; --border: #e2e5eb; --border2: #d0d4dc; --mid: #8a93a2; --text: #1a1e26; --text2: #5a6272; }
+[data-theme="dark"]  { --bg: #12151a; --bg2: #191d24; --bg3: #1f242d; --island: #191d24; --island2: #1f242d; --island3: #252b36; --border: #252b36; --border2: #2e3645; --mid: #6b7585; --text: #e4e8ef; --text2: #9aa3b0; }
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; height: 64px; background: #12151a; border-bottom: 1px solid #1e2530; }
+.nav-logo { font-family: var(--cond); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.04em; color: #e4e8ef; text-decoration: none; }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.theme-toggle { width: 34px; height: 34px; border-radius: var(--r-sm); border: 1px solid #2a3040; background: #1a1f28; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #6b7585; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.nav-cta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: var(--r-sm); padding: 7px 18px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+.nav-cta:hover { background: var(--accent); color: #12151a; }
+
+/* PAGE HEADER */
+.page-header { background: #12151a; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
+.page-header-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,153,204,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,153,204,0.03) 1px, transparent 1px); background-size: 48px 48px; }
+.page-header-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; }
+.page-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+.page-title { font-family: var(--cond); font-weight: 700; font-size: clamp(2.2rem, 4vw, 3.5rem); color: #f5f7fa; line-height: 1.05; margin-bottom: 1rem; }
+.page-sub { font-size: 1rem; color: #6b7585; max-width: 560px; line-height: 1.7; }
+
+/* INDUSTRY TABS */
+.industry-nav { background: var(--bg2); border-bottom: 1px solid var(--border); position: sticky; top: 64px; z-index: 50; transition: background 0.3s, border-color 0.3s; }
+.industry-nav-inner { max-width: 1100px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; }
+.industry-nav-inner::-webkit-scrollbar { display: none; }
+.ind-btn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); padding: 1rem 1.5rem; border: none; background: none; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; display: flex; align-items: center; gap: 8px; }
+.ind-btn:hover { color: var(--text); }
+.ind-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.ind-btn-icon { font-size: 14px; }
+
+/* BODY */
+.apps-body { max-width: 1100px; margin: 0 auto; padding: 4rem 4rem 6rem; }
+
+/* INDUSTRY SECTION */
+.industry-section { margin-bottom: 6rem; scroll-margin-top: 120px; }
+
+.industry-header {
+  display: grid; grid-template-columns: auto 1fr; gap: 2rem;
+  align-items: center; margin-bottom: 3rem;
+  padding-bottom: 2rem; border-bottom: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+
+.industry-icon-lg {
+  width: 64px; height: 64px; border-radius: var(--r-lg);
+  background: var(--island); border: 1px solid rgba(0,153,204,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.industry-meta {}
+.industry-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 8px; }
+.industry-tag::before { content: ''; display: block; width: 14px; height: 1px; background: var(--accent); }
+.industry-title { font-family: var(--cond); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--text); line-height: 1.1; margin-bottom: 0.5rem; transition: color 0.3s; }
+.industry-desc { font-size: 0.95rem; color: var(--text2); max-width: 580px; line-height: 1.7; transition: color 0.3s; }
+
+/* USE CASE GRID */
+.use-case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 2rem; }
+
+.use-case-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 1.8rem; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s, background 0.3s;
+}
+.use-case-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,153,204,0.08); }
+
+.use-case-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--accent); opacity: 0.6; margin-bottom: 0.8rem; }
+.use-case-title { font-family: var(--cond); font-weight: 600; font-size: 1.05rem; color: var(--text); margin-bottom: 0.5rem; letter-spacing: 0.02em; transition: color 0.3s; }
+.use-case-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin-bottom: 1.2rem; transition: color 0.3s; }
+.use-case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.utag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--border2); border-radius: var(--r-sm); padding: 3px 8px; background: var(--bg); transition: background 0.3s, border-color 0.3s; }
+
+/* RECOMMENDED PRODUCTS STRIP */
+.rec-strip {
+  background: var(--island); border-radius: var(--r-lg);
+  padding: 1.8rem 2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+}
+.rec-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #6b7585; flex-shrink: 0; }
+.rec-products { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+.rec-product {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent);
+  border: 1px solid rgba(0,153,204,0.25); border-radius: var(--r-sm);
+  padding: 5px 12px; text-decoration: none; background: rgba(0,153,204,0.05);
+  transition: background 0.2s, border-color 0.2s;
+}
+.rec-product:hover { background: rgba(0,153,204,0.12); border-color: var(--accent); }
+
+.rec-cta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; background: var(--accent); border-radius: var(--r-sm); padding: 8px 16px; text-decoration: none; flex-shrink: 0; transition: opacity 0.2s; }
+.rec-cta:hover { opacity: 0.85; }
+
+/* SECTION DIVIDER */
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 6rem; transition: border-color 0.3s; }
+
+/* CTA STRIP */
+.cta-strip { background: var(--accent); padding: 4rem; text-align: center; }
+.cta-strip h2 { font-family: var(--cond); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.2rem); color: #fff; margin-bottom: 0.5rem; }
+.cta-strip p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 1.8rem; }
+.btn-white { background: #fff; color: var(--accent); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 28px; border-radius: var(--r-sm); text-decoration: none; display: inline-block; font-weight: 500; transition: opacity 0.2s; }
+.btn-white:hover { opacity: 0.88; }
+
+/* FOOTER */
+footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 4rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-logo { font-family: var(--cond); font-weight: 700; font-size: 1.1rem; color: #e4e8ef; }
+.footer-logo span { color: var(--accent); }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: #6b7585; letter-spacing: 0.08em; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Sightwise<span>Tech</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="applications.html" class="active">Applications</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">☀</button>
+    <a href="contact.html" class="nav-cta">Request Quote</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Where we work</div>
+    <h1 class="page-title">Industry<br>Applications</h1>
+    <p class="page-sub">From PCB assembly to aerospace components — vision inspection solutions configured for the quality demands of each industry we serve.</p>
+  </div>
+</div>
+
+<div class="industry-nav">
+  <div class="industry-nav-inner">
+    <button class="ind-btn active" onclick="scrollToInd('electronics', this)"><span class="ind-btn-icon">🔌</span>Electronics</button>
+    <button class="ind-btn" onclick="scrollToInd('biomedical', this)"><span class="ind-btn-icon">🩺</span>Biomedical</button>
+    <button class="ind-btn" onclick="scrollToInd('aerospace', this)"><span class="ind-btn-icon">✈️</span>Aerospace</button>
+    <button class="ind-btn" onclick="scrollToInd('metal', this)"><span class="ind-btn-icon">⚙️</span>Metal & Mechanical</button>
+    <button class="ind-btn" onclick="scrollToInd('automotive', this)"><span class="ind-btn-icon">🚗</span>Automotive</button>
+  </div>
+</div>
+
+<div class="apps-body">
+
+  <!-- ELECTRONICS -->
+  <div class="industry-section reveal" id="electronics">
+    <div class="industry-header">
+      <div class="industry-icon-lg">🔌</div>
+      <div class="industry-meta">
+        <div class="industry-tag">Industry 01</div>
+        <div class="industry-title">Electronics Manufacturing</div>
+        <p class="industry-desc">PCB assembly lines and electronics manufacturers require consistent, high-resolution inspection at every stage — from bare board through final assembly. Our systems support visual quality control without automated pass/fail equipment.</p>
+      </div>
+    </div>
+    <div class="use-case-grid">
+      <div class="use-case-card">
+        <div class="use-case-num">01 — 01</div>
+        <div class="use-case-title">PCB Visual Inspection</div>
+        <p class="use-case-desc">High-magnification visual review of solder joints, component placement, and board cleanliness on assembled PCBs at inspection stations.</p>
+        <div class="use-case-tags"><span class="utag">Stereo Microscope</span><span class="utag">Digital System</span><span class="utag">High Mag</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">01 — 02</div>
+        <div class="use-case-title">Component & Rework Verification</div>
+        <p class="use-case-desc">Post-rework inspection to verify correct component orientation, solder quality, and pad condition before the board moves downstream.</p>
+        <div class="use-case-tags"><span class="utag">Trinocular</span><span class="utag">Digital Output</span><span class="utag">LED Illumination</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">01 — 03</div>
+        <div class="use-case-title">Fine-Pitch & BGA Review</div>
+        <p class="use-case-desc">Magnified inspection of fine-pitch ICs, QFN packages, and BGA joints where standard visual inspection is insufficient.</p>
+        <div class="use-case-tags"><span class="utag">High Magnification</span><span class="utag">Coaxial Light</span><span class="utag">Digital Capture</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">01 — 04</div>
+        <div class="use-case-title">Cable & Connector Inspection</div>
+        <p class="use-case-desc">Visual verification of wire harness assemblies, connector seating, crimp quality, and insulation integrity on production lines.</p>
+        <div class="use-case-tags"><span class="utag">Magnifier Lamp</span><span class="utag">Articulated Arm</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">01 — 05</div>
+        <div class="use-case-title">AI-Assisted Defect Detection</div>
+        <p class="use-case-desc">Camera-based digital capture feeding TRAINR-trained models for consistent defect classification across solder bridges, tombstones, and missing components.</p>
+        <div class="use-case-tags"><span class="utag">TRAINR</span><span class="utag">AI-Enhanced</span><span class="utag">Edge Deploy</span></div>
+      </div>
+    </div>
+    <div class="rec-strip">
+      <span class="rec-label">Recommended</span>
+      <div class="rec-products">
+        <a href="products.html#stereo" class="rec-product">Stereo Microscopes</a>
+        <a href="products.html#digital" class="rec-product">Digital Inspection Systems</a>
+        <a href="products.html#allinone" class="rec-product">All-in-One Units</a>
+        <a href="products.html" class="rec-product">Vision Software</a>
+      </div>
+      <a href="contact.html" class="rec-cta">Get a quote →</a>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- BIOMEDICAL -->
+  <div class="industry-section reveal" id="biomedical">
+    <div class="industry-header">
+      <div class="industry-icon-lg">🩺</div>
+      <div class="industry-meta">
+        <div class="industry-tag">Industry 02</div>
+        <div class="industry-title">Biomedical & Medical Devices</div>
+        <p class="industry-desc">Medical device manufacturers and biomedical component producers operate under strict regulatory standards. Our optical inspection systems provide the magnification, illumination, and documentation capability required for traceability and quality assurance.</p>
+      </div>
+    </div>
+    <div class="use-case-grid">
+      <div class="use-case-card">
+        <div class="use-case-num">02 — 01</div>
+        <div class="use-case-title">Implant & Instrument Surface Inspection</div>
+        <p class="use-case-desc">Visual inspection of surgical instruments and implants for surface defects, burrs, and finish quality before sterilization and packaging.</p>
+        <div class="use-case-tags"><span class="utag">High Mag</span><span class="utag">Digital Capture</span><span class="utag">Documentation</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">02 — 02</div>
+        <div class="use-case-title">Micro-Assembly Verification</div>
+        <p class="use-case-desc">Inspection of miniaturized assemblies — catheters, sensors, micro-connectors — where component dimensions and assembly integrity are critical.</p>
+        <div class="use-case-tags"><span class="utag">Stereo Microscope</span><span class="utag">Fine Optics</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">02 — 03</div>
+        <div class="use-case-title">Packaging & Label Verification</div>
+        <p class="use-case-desc">Visual confirmation of label placement, lot coding, and seal integrity on medical device packaging lines.</p>
+        <div class="use-case-tags"><span class="utag">Digital System</span><span class="utag">All-in-One Unit</span></div>
+      </div>
+    </div>
+    <div class="rec-strip">
+      <span class="rec-label">Recommended</span>
+      <div class="rec-products">
+        <a href="products.html#stereo" class="rec-product">Stereo Microscopes</a>
+        <a href="products.html#digital" class="rec-product">Digital Inspection Systems</a>
+        <a href="products.html#accessories" class="rec-product">Accessories & Optics</a>
+      </div>
+      <a href="contact.html" class="rec-cta">Get a quote →</a>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- AEROSPACE -->
+  <div class="industry-section reveal" id="aerospace">
+    <div class="industry-header">
+      <div class="industry-icon-lg">✈️</div>
+      <div class="industry-meta">
+        <div class="industry-tag">Industry 03</div>
+        <div class="industry-title">Aerospace</div>
+        <p class="industry-desc">Aerospace components demand zero-defect manufacturing and full inspection traceability. Our systems support visual inspection stations for critical parts where documentation and repeatability are mandatory at every stage.</p>
+      </div>
+    </div>
+    <div class="use-case-grid">
+      <div class="use-case-card">
+        <div class="use-case-num">03 — 01</div>
+        <div class="use-case-title">Surface Defect & Coating Inspection</div>
+        <p class="use-case-desc">Inspection of machined and coated aerospace components for cracks, pitting, delamination, and surface finish non-conformances.</p>
+        <div class="use-case-tags"><span class="utag">Digital Capture</span><span class="utag">High Resolution</span><span class="utag">Documentation</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">03 — 02</div>
+        <div class="use-case-title">Weld & Fastener Visual Review</div>
+        <p class="use-case-desc">Magnified inspection of weld beads, fastener seating, and torque indicators on structural assemblies and sub-assemblies.</p>
+        <div class="use-case-tags"><span class="utag">Stereo Microscope</span><span class="utag">Articulated Arm</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">03 — 03</div>
+        <div class="use-case-title">Electronic Avionics Inspection</div>
+        <p class="use-case-desc">High-magnification review of avionics PCBs, connector backshells, and wire harness assemblies to aerospace quality standards.</p>
+        <div class="use-case-tags"><span class="utag">Trinocular</span><span class="utag">Digital Output</span><span class="utag">AI-Enhanced</span></div>
+      </div>
+    </div>
+    <div class="rec-strip">
+      <span class="rec-label">Recommended</span>
+      <div class="rec-products">
+        <a href="products.html#digital" class="rec-product">Digital Inspection Systems</a>
+        <a href="products.html#stereo" class="rec-product">Stereo Microscopes</a>
+        <a href="products.html" class="rec-product">Vision Software</a>
+      </div>
+      <a href="contact.html" class="rec-cta">Get a quote →</a>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- METAL & MECHANICAL -->
+  <div class="industry-section reveal" id="metal">
+    <div class="industry-header">
+      <div class="industry-icon-lg">⚙️</div>
+      <div class="industry-meta">
+        <div class="industry-tag">Industry 04</div>
+        <div class="industry-title">Metal & Mechanical Industry</div>
+        <p class="industry-desc">Machined and formed metal parts require surface and dimensional inspection across high-volume production. Our systems bring optical and digital inspection capability to the shop floor — from turned parts to stamped metal components.</p>
+      </div>
+    </div>
+    <div class="use-case-grid">
+      <div class="use-case-card">
+        <div class="use-case-num">04 — 01</div>
+        <div class="use-case-title">Machined Part Surface Inspection</div>
+        <p class="use-case-desc">Visual inspection of CNC-machined parts for burrs, tool marks, surface finish deviations, and edge condition before assembly or shipping.</p>
+        <div class="use-case-tags"><span class="utag">Digital System</span><span class="utag">Magnifier Lamp</span><span class="utag">LED Illumination</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">04 — 02</div>
+        <div class="use-case-title">Stamped & Formed Part QC</div>
+        <p class="use-case-desc">Inspection of stamped metal components for cracks, deformations, and surface anomalies at the press line or goods-in station.</p>
+        <div class="use-case-tags"><span class="utag">All-in-One Unit</span><span class="utag">AI-Enhanced</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">04 — 03</div>
+        <div class="use-case-title">Thread & Feature Verification</div>
+        <p class="use-case-desc">Magnified inspection of threaded features, bores, and precision geometry to confirm conformance before assembly.</p>
+        <div class="use-case-tags"><span class="utag">Stereo Microscope</span><span class="utag">High Mag</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">04 — 04</div>
+        <div class="use-case-title">Coating & Finish Inspection</div>
+        <p class="use-case-desc">Visual review of anodized, plated, and painted surfaces for adhesion failures, pinholes, runs, and colour uniformity.</p>
+        <div class="use-case-tags"><span class="utag">Digital Capture</span><span class="utag">Coaxial Light</span><span class="utag">Darkfield</span></div>
+      </div>
+    </div>
+    <div class="rec-strip">
+      <span class="rec-label">Recommended</span>
+      <div class="rec-products">
+        <a href="products.html#lamps" class="rec-product">Magnifier Lamps</a>
+        <a href="products.html#digital" class="rec-product">Digital Inspection Systems</a>
+        <a href="products.html#allinone" class="rec-product">All-in-One Units</a>
+      </div>
+      <a href="contact.html" class="rec-cta">Get a quote →</a>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- AUTOMOTIVE -->
+  <div class="industry-section reveal" id="automotive">
+    <div class="industry-header">
+      <div class="industry-icon-lg">🚗</div>
+      <div class="industry-meta">
+        <div class="industry-tag">Industry 05</div>
+        <div class="industry-title">Automotive</div>
+        <p class="industry-desc">Automotive tier suppliers face demanding OEM quality requirements with high-volume production constraints. Our inspection systems bring optical and AI-assisted visual quality control to assembly and sub-assembly stations across the automotive supply chain.</p>
+      </div>
+    </div>
+    <div class="use-case-grid">
+      <div class="use-case-card">
+        <div class="use-case-num">05 — 01</div>
+        <div class="use-case-title">Electronic Control Unit (ECU) Inspection</div>
+        <p class="use-case-desc">PCB-level visual inspection of automotive ECUs and control modules for solder quality, component placement, and conformal coating coverage.</p>
+        <div class="use-case-tags"><span class="utag">Digital System</span><span class="utag">AI-Enhanced</span><span class="utag">High Mag</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">05 — 02</div>
+        <div class="use-case-title">Interior & Trim Component QC</div>
+        <p class="use-case-desc">Surface inspection of plastic trim, chrome, and painted interior components for scratches, sink marks, and cosmetic non-conformances.</p>
+        <div class="use-case-tags"><span class="utag">Magnifier Lamp</span><span class="utag">All-in-One Unit</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">05 — 03</div>
+        <div class="use-case-title">Connector & Wiring Harness QC</div>
+        <p class="use-case-desc">Inspection of automotive connector assemblies, terminal crimps, and harness routing for conformance to build specifications.</p>
+        <div class="use-case-tags"><span class="utag">Stereo Microscope</span><span class="utag">Digital Output</span></div>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-num">05 — 04</div>
+        <div class="use-case-title">Machined Powertrain Parts</div>
+        <p class="use-case-desc">Surface and feature inspection of precision-machined engine and transmission components at goods-in and process control points.</p>
+        <div class="use-case-tags"><span class="utag">Digital Inspection</span><span class="utag">TRAINR</span><span class="utag">Coaxial Light</span></div>
+      </div>
+    </div>
+    <div class="rec-strip">
+      <span class="rec-label">Recommended</span>
+      <div class="rec-products">
+        <a href="products.html#digital" class="rec-product">Digital Inspection Systems</a>
+        <a href="products.html#lamps" class="rec-product">Magnifier Lamps</a>
+        <a href="products.html" class="rec-product">Vision Software</a>
+        <a href="products.html#allinone" class="rec-product">All-in-One Units</a>
+      </div>
+      <a href="contact.html" class="rec-cta">Get a quote →</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta-strip">
+  <h2>Don't see your industry?</h2>
+  <p>Tell us what you're inspecting and we'll configure the right solution.</p>
+  <a href="contact.html" class="btn-white">Talk to us →</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Sightwise<span>Tech</span></div>
+    <ul class="footer-links">
+      <li><a href="products.html">Products</a></li>
+      <li><a href="applications.html">Applications</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 SightwiseTech — Guadalajara, MX</div>
+  </div>
+</footer>
+
+<script>
+const btn = document.getElementById('themeBtn');
+const html = document.documentElement;
+btn.addEventListener('click', () => { const d = html.getAttribute('data-theme') === 'dark'; html.setAttribute('data-theme', d ? 'light' : 'dark'); btn.textContent = d ? '☀' : '☾'; });
+
+function scrollToInd(id, el) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('.ind-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+const sections = ['electronics','biomedical','aerospace','metal','automotive'];
+const indBtns = document.querySelectorAll('.ind-btn');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < 160) cur = id; });
+  indBtns.forEach((b, i) => b.classList.toggle('active', sections[i] === cur));
+});
+
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
