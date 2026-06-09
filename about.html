@@ -65,28 +65,6 @@ section { padding: 6rem 4rem; }
 .timeline-title { font-family: var(--cond); font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.25rem; transition: color 0.3s; }
 .timeline-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; transition: color 0.3s; }
 
-/* TEAM — dark island */
-.team-section { background: var(--island); transition: background 0.3s; }
-.team-section .section-title { color: #e4e8ef; }
-.team-section .section-sub   { color: #6b7585; }
-
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 3rem; }
-
-.team-card { background: var(--island2); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--r-lg); overflow: hidden; transition: border-color 0.2s; }
-.team-card:hover { border-color: rgba(0,153,204,0.3); }
-
-.team-photo {
-  aspect-ratio: 4/3; background: var(--island3);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.team-photo-placeholder { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,153,204,0.3); text-align: center; line-height: 2; border: 1px dashed rgba(0,153,204,0.15); border-radius: var(--r-sm); padding: 1rem 1.5rem; }
-
-.team-info { padding: 1.5rem; }
-.team-name { font-family: var(--cond); font-weight: 700; font-size: 1.15rem; color: #e4e8ef; margin-bottom: 0.2rem; }
-.team-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
-.team-bio { font-size: 0.85rem; color: #6b7585; line-height: 1.6; }
-
 /* VALUES */
 .values-section { background: var(--bg2); transition: background 0.3s; }
 .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 3rem; }
@@ -242,53 +220,6 @@ footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padd
   </div>
 </section>
 
-<!-- TEAM -->
-<section class="team-section">
-  <div class="section-inner">
-    <div class="section-label">The team</div>
-    <h2 class="section-title">Who's Behind It</h2>
-    <p class="section-sub">A small team with deep technical roots and real manufacturing experience.</p>
-    <div class="team-grid reveal">
-
-      <div class="team-card">
-        <div class="team-photo">
-          <!-- Replace with: <img src="images/team-diego.jpg" alt="Diego Sánchez"> -->
-          <div class="team-photo-placeholder">Photo coming soon<br>diego-sanchez.jpg</div>
-        </div>
-        <div class="team-info">
-          <div class="team-name">Diego Sánchez</div>
-          <div class="team-role">Founder & CEO</div>
-          <p class="team-bio">Mechatronics engineer with a triple degree in Mechanical, Electrical, and Mechatronics Engineering (UAG). Nearly a decade in manufacturing — field service, automation, robotics, and machine vision. Leads product strategy, software development, and customer engineering.</p>
-        </div>
-      </div>
-
-      <!-- Placeholder cards for future team members -->
-      <div class="team-card">
-        <div class="team-photo">
-          <div class="team-photo-placeholder">Position open<br>or coming soon</div>
-        </div>
-        <div class="team-info">
-          <div class="team-name">— TBD —</div>
-          <div class="team-role">Sales & Applications</div>
-          <p class="team-bio">We're growing. If you have a background in industrial sales or vision applications and want to be part of what we're building, reach out.</p>
-        </div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-photo">
-          <div class="team-photo-placeholder">Position open<br>or coming soon</div>
-        </div>
-        <div class="team-info">
-          <div class="team-name">— TBD —</div>
-          <div class="team-role">Field Service & Integration</div>
-          <p class="team-bio">We're looking for engineers with hands-on experience in optical systems, mechatronics, or industrial integration to join the team in Guadalajara.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- VALUES -->
 <section class="values-section">
   <div class="section-inner">
@@ -338,24 +269,20 @@ footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padd
     <div class="location-grid reveal">
       <div class="location-details">
         <div class="location-item">
-          <span class="location-item-label">City</span>
-          <span class="location-item-value">Guadalajara / Zapopan, Jalisco — México</span>
+          <span class="location-item-label">Headquarters</span>
+          <span class="location-item-value">Guadalajara, Jalisco — México</span>
         </div>
         <div class="location-item">
           <span class="location-item-label">Service area</span>
-          <span class="location-item-value">Jalisco · CDMX · Monterrey · Bajío region and nationwide</span>
+          <span class="location-item-value">Mexico · United States · Argentina · Brazil</span>
         </div>
         <div class="location-item">
           <span class="location-item-label">Languages</span>
-          <span class="location-item-value">Spanish (primary) · English</span>
-        </div>
-        <div class="location-item">
-          <span class="location-item-label">Business hours</span>
-          <span class="location-item-value">Monday – Friday · 09:00 – 18:00 CST</span>
+          <span class="location-item-value">Spanish · English · Portuguese</span>
         </div>
         <div class="location-item">
           <span class="location-item-label">Email</span>
-          <span class="location-item-value" style="color: var(--accent);"><a href="mailto:diego.sanchez@sightwisetech.com" style="color:var(--accent);text-decoration:none;">diego.sanchez@sightwisetech.com</a></span>
+          <span class="location-item-value"><a href="mailto:diego.sanchez@sightwisetech.com" style="color:var(--accent);text-decoration:none;">diego.sanchez@sightwisetech.com</a></span>
         </div>
       </div>
       <div class="location-map-placeholder">
