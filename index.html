@@ -1,326 +1,656 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SightwiseTech — Coming Soon</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<title>SightwiseTech — Industrial Vision Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #0a0c0e;
-    --surface: #111418;
-    --border: #1e2530;
-    --accent: #00c8ff;
-    --accent-dim: rgba(0,200,255,0.08);
-    --text-primary: #e8edf2;
-    --text-secondary: #6a7a8a;
-    --text-mono: #00c8ff;
-    --grid: rgba(0,200,255,0.04);
-  }
+:root {
+  --accent:  #0099cc;
+  --r-sm:    6px;
+  --r-md:    10px;
+  --r-lg:    16px;
+  --mono:    'Share Tech Mono', monospace;
+  --sans:    'Barlow', sans-serif;
+  --cond:    'Barlow Condensed', sans-serif;
+}
 
-  html, body {
-    height: 100%;
-    background: var(--bg);
-    color: var(--text-primary);
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+[data-theme="light"] {
+  --bg:      #f7f8fa;
+  --bg2:     #ffffff;
+  --bg3:     #eef0f4;
+  --island:  #12151a;
+  --island2: #191d24;
+  --island3: #1f242d;
+  --border:  #e2e5eb;
+  --border2: #d0d4dc;
+  --mid:     #8a93a2;
+  --text:    #1a1e26;
+  --text2:   #5a6272;
+}
 
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 2rem;
-  }
+[data-theme="dark"] {
+  --bg:      #12151a;
+  --bg2:     #191d24;
+  --bg3:     #1f242d;
+  --island:  #191d24;
+  --island2: #1f242d;
+  --island3: #252b36;
+  --border:  #252b36;
+  --border2: #2e3645;
+  --mid:     #6b7585;
+  --text:    #e4e8ef;
+  --text2:   #9aa3b0;
+}
 
-  .grid-bg {
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
+html { scroll-behavior: smooth; }
 
-  .scan-line {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0.4;
-    animation: scan 6s linear infinite;
-    z-index: 1;
-    pointer-events: none;
-  }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
 
-  @keyframes scan {
-    0% { top: -2px; }
-    100% { top: 100vh; }
-  }
+/* ── NAV — always dark ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4rem; height: 64px;
+  background: #12151a;
+  border-bottom: 1px solid #1e2530;
+}
 
-  .container {
-    position: relative;
-    z-index: 2;
-    max-width: 680px;
-    width: 100%;
-    text-align: left;
-  }
+.nav-logo {
+  font-family: var(--cond); font-weight: 700; font-size: 1.25rem;
+  letter-spacing: 0.04em; color: #e4e8ef; text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
 
-  .tag {
-    display: inline-block;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--text-mono);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border: 1px solid rgba(0,200,255,0.25);
-    padding: 4px 10px;
-    margin-bottom: 2.5rem;
-    background: var(--accent-dim);
-  }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-  .logo {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 600;
-    font-size: clamp(2.2rem, 6vw, 3.8rem);
-    letter-spacing: -0.02em;
-    line-height: 1;
-    color: var(--text-primary);
-    margin-bottom: 0.4rem;
-  }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
 
-  .logo span {
-    color: var(--accent);
-  }
+.theme-toggle {
+  width: 34px; height: 34px; border-radius: var(--r-sm);
+  border: 1px solid #2a3040; background: #1a1f28;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: #6b7585; font-size: 14px; transition: border-color 0.2s, color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
-  .divider {
-    width: 48px;
-    height: 2px;
-    background: var(--accent);
-    margin: 1.8rem 0;
-    opacity: 0.7;
-  }
+.nav-cta {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  border: 1px solid var(--accent); border-radius: var(--r-sm);
+  padding: 7px 18px; text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--accent); color: #12151a; }
 
-  .tagline {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    font-weight: 300;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 520px;
-    margin-bottom: 3rem;
-  }
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 8rem 4rem 4rem;
+  position: relative; overflow: hidden;
+}
 
-  .tagline strong {
-    color: var(--text-primary);
-    font-weight: 400;
-  }
+/* video bg */
+.hero-video-wrap {
+  position: absolute; inset: 0; z-index: 0;
+  background: #0a0c0f;
+}
 
-  .status-row {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-  }
+.hero-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+}
 
-  .status-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    color: var(--text-secondary);
-    letter-spacing: 0.08em;
-  }
+/* shown when no video yet */
+.hero-video-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: #0a0c0f;
+}
 
-  .pulse-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s ease-in-out infinite;
-  }
+.hero-video-placeholder-inner {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(0,153,204,0.3);
+  border: 1px dashed rgba(0,153,204,0.2);
+  border-radius: var(--r-md);
+  padding: 1.5rem 2.5rem;
+  text-align: center;
+  line-height: 2;
+}
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(10,12,15,0.75) 0%,
+    rgba(10,12,15,0.4) 60%,
+    rgba(10,12,15,0.6) 100%
+  );
+}
 
-  .notify-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 1.5rem 1.8rem;
-    margin-bottom: 3rem;
-    position: relative;
-    overflow: hidden;
-  }
+.hero-grid {
+  position: absolute; inset: 0; z-index: 1;
+  background-image:
+    linear-gradient(rgba(0,153,204,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,153,204,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
 
-  .notify-block::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 2px;
-    background: var(--accent);
-  }
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1100px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
 
-  .notify-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--text-mono);
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
 
-  .notify-form {
-    display: flex;
-    gap: 0;
-    max-width: 420px;
-  }
+/* hero text always light — sits over dark video bg */
+.hero h1 {
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  line-height: 1.0; letter-spacing: -0.01em;
+  color: #f5f7fa; margin-bottom: 1.5rem;
+}
+.hero h1 em { font-style: normal; color: var(--accent); }
 
-  .notify-input {
-    flex: 1;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-right: none;
-    color: var(--text-primary);
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    padding: 10px 14px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
+.hero-sub {
+  font-size: 1.05rem; font-weight: 300;
+  color: rgba(228,232,239,0.75); line-height: 1.7;
+  max-width: 440px; margin-bottom: 2.5rem;
+}
 
-  .notify-input::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.5;
-  }
+.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 
-  .notify-input:focus {
-    border-color: rgba(0,200,255,0.4);
-  }
+.btn-primary {
+  background: var(--accent); color: #fff;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 13px 28px; border-radius: var(--r-sm);
+  text-decoration: none; transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; }
 
-  .notify-btn {
-    background: var(--accent);
-    color: #0a0c0e;
-    border: none;
-    padding: 10px 20px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
+.btn-ghost {
+  color: rgba(228,232,239,0.6); font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--accent); }
+.btn-ghost::after { content: '→'; transition: transform 0.2s; }
+.btn-ghost:hover::after { transform: translateX(4px); }
 
-  .notify-btn:hover { opacity: 0.85; }
+/* video badge — bottom of hero */
+.hero-video-badge {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(0,153,204,0.6);
+}
 
-  .contact-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-  }
+.video-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); opacity: 0.7;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
 
-  .contact-row a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-family: 'Share Tech Mono', monospace;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
+/* scope visual */
+.hero-visual { position: relative; }
 
-  .contact-row a:hover { color: var(--accent); }
+.hero-scope {
+  width: 100%; aspect-ratio: 1; max-width: 400px;
+  margin: 0 auto; position: relative;
+}
 
-  .contact-sep {
-    width: 20px;
-    height: 1px;
-    background: var(--border);
-  }
+.scope-ring { position: absolute; border-radius: 50%; border: 1px solid; }
+.scope-ring:nth-child(1) { inset: 0;   border-color: rgba(0,153,204,0.25); }
+.scope-ring:nth-child(2) { inset: 12%; border-color: rgba(0,153,204,0.32); animation: rotate 20s linear infinite; }
+.scope-ring:nth-child(3) { inset: 24%; border-color: rgba(0,153,204,0.42); animation: rotate 14s linear infinite reverse; }
+.scope-ring:nth-child(4) { inset: 38%; border-color: rgba(0,153,204,0.6); }
 
-  .corner-mark {
-    position: fixed;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    color: rgba(0,200,255,0.2);
-    letter-spacing: 0.1em;
-  }
+.scope-cross { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.scope-cross::before { content:''; position: absolute; width: 1px; height: 100%; background: rgba(0,153,204,0.25); }
+.scope-cross::after  { content:''; position: absolute; width: 100%; height: 1px; background: rgba(0,153,204,0.25); }
 
-  .corner-mark.tl { top: 1.5rem; left: 1.5rem; }
-  .corner-mark.br { bottom: 1.5rem; right: 1.5rem; }
+.scope-center {
+  position: absolute; inset: 44%; border-radius: 50%;
+  background: var(--accent); opacity: 0.9;
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
 
-  .success-msg {
-    display: none;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    margin-top: 0.6rem;
-  }
+.scope-tick { position: absolute; font-family: var(--mono); font-size: 9px; color: var(--accent); opacity: 0.5; }
+.scope-tick.t { top: 6%;    left: 50%;  transform: translateX(-50%); }
+.scope-tick.b { bottom: 6%; left: 50%;  transform: translateX(-50%); }
+.scope-tick.l { left: 4%;   top: 50%;   transform: translateY(-50%); }
+.scope-tick.r { right: 4%;  top: 50%;   transform: translateY(-50%); }
+
+.scope-data {
+  position: absolute; bottom: 8%; right: 8%;
+  font-family: var(--mono); font-size: 9px;
+  color: var(--accent); opacity: 0.7; line-height: 1.6; text-align: right;
+}
+
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes pulse-dot { 0%,100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.3); opacity: 0.5; } }
+
+/* ── STATS — always dark ── */
+.stats-bar { background: #12151a; padding: 0 4rem; }
+.stats-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.stat-item { padding: 2rem 0 2rem 2rem; border-right: 1px solid rgba(255,255,255,0.07); }
+.stat-item:first-child { padding-left: 0; }
+.stat-item:last-child  { border-right: none; }
+.stat-num { font-family: var(--cond); font-weight: 700; font-size: 2.4rem; color: #e4e8ef; line-height: 1; margin-bottom: 0.3rem; }
+.stat-num span { color: var(--accent); }
+.stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #6b7585; }
+
+/* ── SECTIONS ── */
+section { padding: 6rem 4rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+
+.section-title {
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--text); line-height: 1.1; margin-bottom: 1rem; transition: color 0.3s;
+}
+
+.section-sub { font-size: 1rem; color: var(--text2); max-width: 520px; line-height: 1.7; transition: color 0.3s; }
+
+/* ── PRODUCTS PREVIEW ── */
+.products-section { background: var(--bg2); transition: background 0.3s; }
+
+.products-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem;
+}
+
+.btn-ghost-themed {
+  color: var(--text2); font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+  display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+}
+.btn-ghost-themed:hover { color: var(--accent); }
+.btn-ghost-themed::after { content: '→'; transition: transform 0.2s; }
+.btn-ghost-themed:hover::after { transform: translateX(4px); }
+
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.product-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 2rem; position: relative; overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s, background 0.3s;
+  cursor: pointer; text-decoration: none; display: block; color: inherit;
+}
+.product-card:hover {
+  border-color: var(--accent); transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,153,204,0.1);
+}
+
+.product-icon {
+  width: 42px; height: 42px; border-radius: var(--r-sm);
+  border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem; background: var(--bg2); color: var(--accent); font-size: 18px;
+  transition: background 0.3s, border-color 0.3s;
+}
+.product-name { font-family: var(--cond); font-weight: 600; font-size: 1.15rem; color: var(--text); margin-bottom: 0.5rem; letter-spacing: 0.02em; transition: color 0.3s; }
+.product-desc { font-size: 0.875rem; color: var(--text2); line-height: 1.6; margin-bottom: 1.5rem; transition: color 0.3s; }
+.product-tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.ptag {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mid); border: 1px solid var(--border2); border-radius: var(--r-sm);
+  padding: 3px 8px; background: var(--bg2); transition: background 0.3s, border-color 0.3s;
+}
+
+/* ── APPLICATIONS — dark island ── */
+.apps-section { background: var(--island); transition: background 0.3s; }
+.apps-section .section-title { color: #e4e8ef; }
+.apps-section .section-sub   { color: #6b7585; }
+
+.apps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 3rem; }
+
+.app-card {
+  background: var(--island2); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r-lg); padding: 2rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.app-card:hover { background: var(--island3); border-color: rgba(0,153,204,0.3); }
+
+.app-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+.app-title { font-family: var(--cond); font-weight: 600; font-size: 1.05rem; color: #e4e8ef; margin-bottom: 0.4rem; letter-spacing: 0.02em; }
+.app-desc  { font-size: 0.875rem; color: #6b7585; line-height: 1.6; }
+
+/* ── WHY US ── */
+.why-section { background: var(--bg); transition: background 0.3s; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.why-list { display: flex; flex-direction: column; margin-top: 2.5rem; }
+.why-item { display: flex; gap: 1.2rem; padding: 1.4rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; transition: border-color 0.3s; }
+.why-item:first-child { border-top: 1px solid var(--border); }
+.why-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 8px; }
+.why-title { font-family: var(--cond); font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.25rem; letter-spacing: 0.02em; transition: color 0.3s; }
+.why-text  { font-size: 0.875rem; color: var(--text2); line-height: 1.6; transition: color 0.3s; }
+
+.why-visual { background: var(--island); border-radius: var(--r-lg); padding: 2.5rem; transition: background 0.3s; }
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table tr { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.spec-table tr:last-child { border-bottom: none; }
+.spec-table td { padding: 0.8rem 0; font-size: 0.875rem; }
+.spec-table td:first-child { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: #6b7585; text-transform: uppercase; width: 45%; }
+.spec-table td:last-child  { color: #e4e8ef; font-weight: 400; }
+.spec-header { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+/* ── INDUSTRIES — light ── */
+.industries-section { background: var(--bg2); transition: background 0.3s; }
+.industries-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 3rem; }
+.industry-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 1.5rem 1rem; text-align: center;
+  transition: border-color 0.2s, transform 0.2s, background 0.3s;
+}
+.industry-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.industry-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+.industry-name { font-family: var(--cond); font-weight: 600; font-size: 0.9rem; color: var(--text); letter-spacing: 0.02em; transition: color 0.3s; }
+.industry-desc { font-size: 0.78rem; color: var(--text2); margin-top: 0.3rem; line-height: 1.4; transition: color 0.3s; }
+
+/* ── CTA ── */
+.cta-strip { background: var(--accent); padding: 4rem; text-align: center; }
+.cta-strip h2 { font-family: var(--cond); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem); color: #fff; margin-bottom: 0.6rem; }
+.cta-strip p  { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 2rem; }
+.btn-white {
+  background: #fff; color: var(--accent); font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 32px;
+  border-radius: var(--r-sm); text-decoration: none; display: inline-block; font-weight: 500; transition: opacity 0.2s;
+}
+.btn-white:hover { opacity: 0.88; }
+
+/* ── FOOTER — always dark ── */
+footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 4rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-logo { font-family: var(--cond); font-weight: 700; font-size: 1.1rem; color: #e4e8ef; }
+.footer-logo span { color: var(--accent); }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: #6b7585; letter-spacing: 0.08em; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
-<div class="grid-bg"></div>
-<div class="scan-line"></div>
 
-<span class="corner-mark tl">SW-TECH // INIT</span>
-<span class="corner-mark br">v0.1.0</span>
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Sightwise<span>Tech</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="applications.html">Applications</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">☀</button>
+    <a href="contact.html" class="nav-cta">Request Quote</a>
+  </div>
+</nav>
 
-<div class="container">
-  <div class="tag">Status: Under construction</div>
+<!-- HERO -->
+<section class="hero">
 
-  <div class="logo">Sightwise<span>Tech</span></div>
+  <!-- VIDEO BACKGROUND — swap placeholder div for <video> tag when ready -->
+  <div class="hero-video-wrap">
+    <!-- PLACEHOLDER: remove this div and uncomment <video> below when you have the clip -->
+    <div class="hero-video-placeholder">
+      <div class="hero-video-placeholder-inner">
+        Video coming soon<br>
+        Place hero.mp4 in /video/ folder<br>
+        &lt; 10MB · 1080p · H.264 · looping ·  no audio &gt;
+      </div>
+    </div>
 
-  <div class="divider"></div>
+    <!-- VIDEO: uncomment when ready
+    <video autoplay muted loop playsinline poster="images/hero-poster.jpg">
+      <source src="video/hero.mp4" type="video/mp4">
+    </video>
+    -->
+  </div>
 
-  <p class="tagline">
-    <strong>Machine vision and industrial inspection systems</strong> for manufacturing quality control — cameras, optics, and AI-powered defect detection built for the factory floor.
-  </p>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
 
-  <div class="status-row">
-    <div class="status-badge">
-      <div class="pulse-dot"></div>
-      SITE COMING SOON
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Industrial Vision Systems</div>
+      <h1>Precision<br>Vision for<br><em>the Factory</em><br>Floor</h1>
+      <p class="hero-sub">Machine vision inspection systems, high-resolution cameras, and AI-powered quality control solutions engineered for demanding manufacturing environments.</p>
+      <div class="hero-actions">
+        <a href="products.html" class="btn-primary">Explore Products</a>
+        <a href="applications.html" class="btn-ghost">View Applications</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-scope">
+        <div class="scope-ring"></div>
+        <div class="scope-ring"></div>
+        <div class="scope-ring"></div>
+        <div class="scope-ring"></div>
+        <div class="scope-cross"></div>
+        <div class="scope-center"></div>
+        <span class="scope-tick t">000°</span>
+        <span class="scope-tick b">180°</span>
+        <span class="scope-tick l">270°</span>
+        <span class="scope-tick r">090°</span>
+        <div class="scope-data">RES 20MP<br>FPS 120<br>SYNC ✓</div>
+      </div>
     </div>
   </div>
 
-  <div class="notify-block">
-    <div class="notify-label">Get notified at launch</div>
-    <div class="notify-form">
-      <input class="notify-input" type="email" placeholder="your@email.com" id="emailInput">
-      <button class="notify-btn" onclick="handleNotify()">Notify me</button>
-    </div>
-    <div class="success-msg" id="successMsg">// Registered. We'll be in touch.</div>
+  <div class="hero-video-badge">
+    <div class="video-badge-dot"></div>
+    Live capture · SightwiseTech optics
   </div>
 
-  <div class="contact-row">
-    <span style="font-size:12px; color: var(--text-secondary); letter-spacing:0.1em; font-family:'Share Tech Mono',monospace;">CONTACT</span>
-    <div class="contact-sep"></div>
-    <a href="mailto:diego.sanchez@sightwisetech.com">diego.sanchez@sightwisetech.com</a>
+</section>
+
+<!-- STATS — always dark -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><div class="stat-num">20<span>MP</span></div><div class="stat-label">Max Resolution</div></div>
+    <div class="stat-item reveal"><div class="stat-num"><span>&lt;</span>1ms</div><div class="stat-label">Inference Latency</div></div>
+    <div class="stat-item reveal"><div class="stat-num">360<span>°</span></div><div class="stat-label">Inspection Coverage</div></div>
+    <div class="stat-item reveal"><div class="stat-num">99<span>.x%</span></div><div class="stat-label">Detection Accuracy</div></div>
   </div>
 </div>
 
+<!-- PRODUCTS PREVIEW -->
+<section class="products-section" id="products">
+  <div class="section-inner">
+    <div class="products-header">
+      <div>
+        <div class="section-label">What we offer</div>
+        <h2 class="section-title">Products &<br>Components</h2>
+      </div>
+      <a href="products.html" class="btn-ghost-themed">Full catalogue</a>
+    </div>
+    <div class="products-grid reveal">
+      <a href="products.html#stereo" class="product-card">
+        <div class="product-icon">◎</div>
+        <div class="product-name">Stereo Microscopes</div>
+        <div class="product-desc">Optical zoom stereo heads on articulated arm and pillar stands for hands-on inspection and assembly.</div>
+        <div class="product-tag-row"><span class="ptag">Zoom Optics</span><span class="ptag">Articulated Arm</span><span class="ptag">Pillar Stand</span></div>
+      </a>
+      <a href="products.html#digital" class="product-card">
+        <div class="product-icon">⬡</div>
+        <div class="product-name">Digital Inspection Systems</div>
+        <div class="product-desc">Stereo and zoom heads paired with digital cameras and monitors — ready to ship, configurable stands.</div>
+        <div class="product-tag-row"><span class="ptag">Digital Output</span><span class="ptag">GigE</span><span class="ptag">USB3</span></div>
+      </a>
+      <a href="products.html#allinone" class="product-card">
+        <div class="product-icon">⊙</div>
+        <div class="product-name">All-in-One Digital Units</div>
+        <div class="product-desc">Integrated tablet-screen inspection units. Self-contained, minimal footprint, no separate monitor needed.</div>
+        <div class="product-tag-row"><span class="ptag">Integrated Display</span><span class="ptag">Compact</span></div>
+      </a>
+      <a href="products.html#lamps" class="product-card">
+        <div class="product-icon">◑</div>
+        <div class="product-name">Illuminated Magnifier Lamps</div>
+        <div class="product-desc">LED-illuminated magnifying lenses on articulated arms for inspection, assembly, and QC benches.</div>
+        <div class="product-tag-row"><span class="ptag">LED</span><span class="ptag">Daylight</span><span class="ptag">Articulated</span></div>
+      </a>
+      <a href="products.html#accessories" class="product-card">
+        <div class="product-icon">◈</div>
+        <div class="product-name">Accessories & Optics</div>
+        <div class="product-desc">Eyepieces, C-mount adapters, camera modules, and hardware to configure or upgrade your system.</div>
+        <div class="product-tag-row"><span class="ptag">C-Mount</span><span class="ptag">Eyepieces</span><span class="ptag">Adapters</span></div>
+      </a>
+      <a href="products.html" class="product-card">
+        <div class="product-icon">⊞</div>
+        <div class="product-name">Vision Software</div>
+        <div class="product-desc">Desktop tools for model training, deployment, and inspection management — built in-house, available for download.</div>
+        <div class="product-tag-row"><span class="ptag">TRAINR</span><span class="ptag">AI/ML</span><span class="ptag">Edge Deploy</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS — dark island -->
+<section class="apps-section" id="applications">
+  <div class="section-inner">
+    <div class="section-label">Industries we serve</div>
+    <h2 class="section-title">Where We Work</h2>
+    <p class="section-sub">Vision inspection solutions across the industries that demand the highest standards of precision and reliability.</p>
+    <div class="apps-grid reveal">
+      <div class="app-card">
+        <div class="app-icon">🔌</div>
+        <div class="app-title">Electronics Manufacturing</div>
+        <div class="app-desc">PCB assembly verification, component placement, solder joint quality, and fine-pitch inspection on the production line.</div>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🩺</div>
+        <div class="app-title">Biomedical & Medical Devices</div>
+        <div class="app-desc">High-magnification inspection of implants, instruments, and assemblies to the tolerances that healthcare demands.</div>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">✈️</div>
+        <div class="app-title">Aerospace</div>
+        <div class="app-desc">Surface defect and dimensional verification for critical components where traceability and zero-defect standards apply.</div>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">⚙️</div>
+        <div class="app-title">Metal & Mechanical</div>
+        <div class="app-desc">Scratch, burr, and finish inspection on machined and cast metal parts across high-volume production runs.</div>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🚗</div>
+        <div class="app-title">Automotive</div>
+        <div class="app-desc">Component inspection and assembly verification for tier suppliers meeting the quality requirements of automotive OEMs.</div>
+      </div>
+      <a href="applications.html" class="app-card" style="text-decoration:none; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);">View all applications</div>
+        <div style="color:var(--accent);font-size:1.2rem;">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section" id="about">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div>
+        <div class="section-label">Why SightwiseTech</div>
+        <h2 class="section-title">Engineering-Led.<br>Factory-Proven.</h2>
+        <div class="why-list reveal">
+          <div class="why-item"><div class="why-dot"></div><div><div class="why-title">Deep manufacturing background</div><div class="why-text">Founded by engineers with nearly a decade on the factory floor — we speak the language of production, not just optics.</div></div></div>
+          <div class="why-item"><div class="why-dot"></div><div><div class="why-title">AI-native inspection</div><div class="why-text">Few-shot anomaly detection lets you onboard a new product with 20–50 images and zero annotation expertise required.</div></div></div>
+          <div class="why-item"><div class="why-dot"></div><div><div class="why-title">Full system or component supply</div><div class="why-text">Whether you need a complete inspection cell or just the right lens and lighting, we configure to your exact process.</div></div></div>
+          <div class="why-item"><div class="why-dot"></div><div><div class="why-title">Local support in Mexico</div><div class="why-text">Based in Guadalajara — rapid response, Spanish-language technical support, and no import delays on stocked items.</div></div></div>
+        </div>
+      </div>
+      <div class="why-visual reveal">
+        <div class="spec-header">// Sample system specification</div>
+        <table class="spec-table">
+          <tr><td>Sensor</td><td>Sony IMX678 — 8.3MP</td></tr>
+          <tr><td>Interface</td><td>GigE Vision / USB3</td></tr>
+          <tr><td>Lens</td><td>Telecentric 0.5× — 1"</td></tr>
+          <tr><td>Lighting</td><td>Coaxial LED, 530nm</td></tr>
+          <tr><td>Processing</td><td>Hailo-8 NPU — edge AI</td></tr>
+          <tr><td>Inference</td><td>&lt; 1ms per frame</td></tr>
+          <tr><td>Software</td><td>TRAINR / Anomalib</td></tr>
+          <tr><td>Output</td><td>Pass / Fail + defect map</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip" id="contact">
+  <h2>Ready to spec your inspection system?</h2>
+  <p>Send us your application details and we'll configure the right solution.</p>
+  <a href="contact.html" class="btn-white">Get in Touch</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Sightwise<span>Tech</span></div>
+    <ul class="footer-links">
+      <li><a href="products.html">Products</a></li>
+      <li><a href="applications.html">Applications</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 SightwiseTech — Guadalajara, MX</div>
+  </div>
+</footer>
+
 <script>
-function handleNotify() {
-  const input = document.getElementById('emailInput');
-  const msg = document.getElementById('successMsg');
-  if (input.value && input.value.includes('@')) {
-    input.style.display = 'none';
-    document.querySelector('.notify-btn').style.display = 'none';
-    msg.style.display = 'block';
-  } else {
-    input.style.borderColor = 'rgba(255,80,80,0.5)';
-    setTimeout(() => input.style.borderColor = '', 1000);
-  }
-}
+const btn = document.getElementById('themeBtn');
+const html = document.documentElement;
+btn.addEventListener('click', () => {
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  btn.textContent = isDark ? '☀' : '☾';
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

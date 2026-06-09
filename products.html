@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — SightwiseTech</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --accent:  #0099cc;
+  --r-sm:    6px;
+  --r-md:    10px;
+  --r-lg:    16px;
+  --mono:    'Share Tech Mono', monospace;
+  --sans:    'Barlow', sans-serif;
+  --cond:    'Barlow Condensed', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg:      #f7f8fa;
+  --bg2:     #ffffff;
+  --bg3:     #eef0f4;
+  --island:  #12151a;
+  --border:  #e2e5eb;
+  --border2: #d0d4dc;
+  --mid:     #8a93a2;
+  --text:    #1a1e26;
+  --text2:   #5a6272;
+}
+
+[data-theme="dark"] {
+  --bg:      #12151a;
+  --bg2:     #191d24;
+  --bg3:     #1f242d;
+  --island:  #191d24;
+  --border:  #252b36;
+  --border2: #2e3645;
+  --mid:     #6b7585;
+  --text:    #e4e8ef;
+  --text2:   #9aa3b0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ── NAV — always dark ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4rem; height: 64px;
+  background: #12151a;
+  border-bottom: 1px solid #1e2530;
+}
+
+.nav-logo {
+  font-family: var(--cond); font-weight: 700; font-size: 1.25rem;
+  letter-spacing: 0.04em; color: #e4e8ef; text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+
+.theme-toggle {
+  width: 34px; height: 34px; border-radius: var(--r-sm);
+  border: 1px solid #2a3040; background: #1a1f28;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: #6b7585; font-size: 14px; transition: border-color 0.2s, color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+.nav-cta {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  border: 1px solid var(--accent); border-radius: var(--r-sm);
+  padding: 7px 18px; text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--accent); color: #12151a; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: #12151a;
+  padding: 8rem 4rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,153,204,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,153,204,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.page-header-inner {
+  position: relative; z-index: 2;
+  max-width: 1100px; margin: 0 auto;
+}
+
+.page-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
+}
+.page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+
+.page-title {
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: #f5f7fa; line-height: 1.05; margin-bottom: 1rem;
+}
+
+.page-sub { font-size: 1rem; color: #6b7585; max-width: 520px; line-height: 1.7; }
+
+/* ── CATEGORY NAV ── */
+.cat-nav {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 64px; z-index: 50;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.cat-nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; gap: 0; overflow-x: auto;
+  scrollbar-width: none;
+}
+.cat-nav-inner::-webkit-scrollbar { display: none; }
+
+.cat-btn {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mid);
+  padding: 1rem 1.4rem; border: none; background: none;
+  cursor: pointer; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.cat-btn:hover { color: var(--text); }
+.cat-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── MAIN LAYOUT ── */
+.products-body {
+  max-width: 1100px; margin: 0 auto;
+  padding: 3rem 4rem 6rem;
+}
+
+/* ── CATEGORY SECTION ── */
+.cat-section { margin-bottom: 5rem; scroll-margin-top: 120px; }
+
+.cat-header { margin-bottom: 2rem; }
+
+.cat-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 0.6rem;
+}
+.cat-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--accent); }
+
+.cat-title {
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--text); margin-bottom: 0.4rem; transition: color 0.3s;
+}
+
+.cat-desc { font-size: 0.9rem; color: var(--text2); max-width: 560px; line-height: 1.6; }
+
+/* ── PRODUCT GRID ── */
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.prod-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: flex; flex-direction: column;
+}
+
+.prod-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,153,204,0.1);
+}
+
+.prod-img-wrap {
+  background: #f0f2f5;
+  aspect-ratio: 1;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+}
+
+[data-theme="dark"] .prod-img-wrap { background: #1a1f28; }
+
+.prod-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.prod-card:hover .prod-img-wrap img { transform: scale(1.04); }
+
+.prod-info { padding: 1rem 1.2rem 1.2rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+
+.prod-name {
+  font-family: var(--cond); font-weight: 600; font-size: 0.95rem;
+  color: var(--text); letter-spacing: 0.02em; line-height: 1.3;
+  transition: color 0.3s;
+}
+
+.prod-sku {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mid);
+}
+
+.prod-cta {
+  margin-top: auto; padding-top: 0.8rem;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: 6px;
+  transition: gap 0.2s;
+}
+
+.prod-card:hover .prod-cta { gap: 10px; }
+.prod-cta::after { content: '→'; }
+
+/* ── CTA STRIP ── */
+.cta-strip {
+  background: var(--accent); padding: 4rem; text-align: center;
+}
+.cta-strip h2 {
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: #fff; margin-bottom: 0.5rem;
+}
+.cta-strip p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 1.8rem; }
+
+.btn-white {
+  background: #fff; color: var(--accent);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 12px 28px; border-radius: var(--r-sm);
+  text-decoration: none; display: inline-block; font-weight: 500; transition: opacity 0.2s;
+}
+.btn-white:hover { opacity: 0.88; }
+
+/* ── FOOTER — always dark ── */
+footer {
+  background: #12151a;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 3rem 4rem;
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo { font-family: var(--cond); font-weight: 700; font-size: 1.1rem; color: #e4e8ef; }
+.footer-logo span { color: var(--accent); }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: #6b7585; letter-spacing: 0.08em; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Sightwise<span>Tech</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="#">Applications</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">☀</button>
+    <a href="#contact" class="nav-cta">Request Quote</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Catalogue</div>
+    <h1 class="page-title">Products &<br>Systems</h1>
+    <p class="page-sub">Optical and digital inspection systems, illumination tools, and accessories — configured for the demands of industrial and precision manufacturing.</p>
+  </div>
+</div>
+
+<!-- STICKY CATEGORY NAV -->
+<div class="cat-nav">
+  <div class="cat-nav-inner">
+    <button class="cat-btn active" onclick="scrollTo('stereo')">Stereo Microscopes</button>
+    <button class="cat-btn" onclick="scrollTo('digital')">Digital Inspection</button>
+    <button class="cat-btn" onclick="scrollTo('allinone')">All-in-One Units</button>
+    <button class="cat-btn" onclick="scrollTo('lamps')">Magnifier Lamps</button>
+    <button class="cat-btn" onclick="scrollTo('accessories')">Accessories</button>
+  </div>
+</div>
+
+<!-- PRODUCTS BODY -->
+<div class="products-body">
+
+  <!-- STEREO MICROSCOPES -->
+  <div class="cat-section reveal" id="stereo">
+    <div class="cat-header">
+      <div class="cat-label">Category 01</div>
+      <div class="cat-title">Stereo Microscopes</div>
+      <p class="cat-desc">Optical zoom stereo microscopes on articulated arm and pillar stands. Eyepiece-based, no screen required — ideal for hands-on inspection and assembly tasks.</p>
+    </div>
+    <div class="prod-grid">
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0164.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0165.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0168.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0172.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0177.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0184.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0185.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0187.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0189.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0192.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Base Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0194.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Base Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+    </div>
+  </div>
+
+  <!-- DIGITAL INSPECTION SYSTEMS -->
+  <div class="cat-section reveal" id="digital">
+    <div class="cat-header">
+      <div class="cat-label">Category 02</div>
+      <div class="cat-title">Digital Inspection Systems</div>
+      <p class="cat-desc">Stereo and zoom inspection heads paired with digital cameras and monitors. Full digital output, configurable stands — from bench to production line.</p>
+    </div>
+    <div class="prod-grid">
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0202.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Trinocular + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0203.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Trinocular + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0204.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0206.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0210.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0213.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Compact Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0217.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0220.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0225.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0227.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0228.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0235.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0237.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0239.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0240.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0245.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Base Stand + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0248.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Base Stand + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0249.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Camera Module — C-Mount</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0251.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0252.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0253.jpg" alt="Digital Camera Module" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Camera Module — GigE</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0254.jpg" alt="Digital Camera Module" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Camera Module</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0255.jpg" alt="Digital Camera Module" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Camera Module</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0256.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Rail Stand + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0257.jpg" alt="Digital Camera Module" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Camera Module — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0258.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+    </div>
+  </div>
+
+  <!-- ALL-IN-ONE DIGITAL UNITS -->
+  <div class="cat-section reveal" id="allinone">
+    <div class="cat-header">
+      <div class="cat-label">Category 03</div>
+      <div class="cat-title">All-in-One Digital Units</div>
+      <p class="cat-desc">Integrated tablet-screen inspection units with built-in display. Self-contained, minimal footprint — no separate monitor or PC required.</p>
+    </div>
+    <div class="prod-grid">
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0288.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0290.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit — Tablet Display</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0291.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0293.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0294.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0298.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit — Stand Mount</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0300.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit — Stand Mount</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0301.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit — Wide Display</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+    </div>
+  </div>
+
+  <!-- MAGNIFIER LAMPS -->
+  <div class="cat-section reveal" id="lamps">
+    <div class="cat-header">
+      <div class="cat-label">Category 04</div>
+      <div class="cat-title">Illuminated Magnifier Lamps</div>
+      <p class="cat-desc">LED-illuminated magnifying lenses on articulated arm stands. Daylight-balanced illumination for inspection, rework, assembly, and quality control benches.</p>
+    </div>
+    <div class="prod-grid">
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0268.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0269.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0270.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Square Lens</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0271.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0272.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0273.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Round Lens</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0277.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0279.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Floor Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0281.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0282.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Wide Lens</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0284.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0286.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Round Lens</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+    </div>
+  </div>
+
+  <!-- ACCESSORIES -->
+  <div class="cat-section reveal" id="accessories">
+    <div class="cat-header">
+      <div class="cat-label">Category 05</div>
+      <div class="cat-title">Accessories & Optics</div>
+      <p class="cat-desc">Eyepieces, C-mount adapters, camera modules, and mounting hardware to configure, upgrade, or expand your inspection system.</p>
+    </div>
+    <div class="prod-grid">
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0302.jpg" alt="C-Mount Adapter" loading="lazy"></div><div class="prod-info"><div class="prod-name">C-Mount Adapter — 0.5×</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0303.jpg" alt="C-Mount Adapter" loading="lazy"></div><div class="prod-info"><div class="prod-name">C-Mount Adapter</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0305.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Optical Accessory</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0307.jpg" alt="Eyepieces" loading="lazy"></div><div class="prod-info"><div class="prod-name">Widefield Eyepieces — WF20×/12</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0308.jpg" alt="Eyepiece" loading="lazy"></div><div class="prod-info"><div class="prod-name">Widefield Eyepiece</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+    </div>
+  </div>
+
+</div><!-- end products-body -->
+
+<!-- CTA -->
+<div class="cta-strip" id="contact">
+  <h2>Can't find what you need?</h2>
+  <p>Tell us your application and we'll configure the right system for you.</p>
+  <a href="mailto:diego.sanchez@sightwisetech.com" class="btn-white">Get in Touch</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Sightwise<span>Tech</span></div>
+    <ul class="footer-links">
+      <li><a href="products.html">Products</a></li>
+      <li><a href="#">Applications</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="mailto:diego.sanchez@sightwisetech.com">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 SightwiseTech — Guadalajara, MX</div>
+  </div>
+</footer>
+
+<script>
+// Theme toggle
+const btn = document.getElementById('themeBtn');
+const html = document.documentElement;
+btn.addEventListener('click', () => {
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  btn.textContent = isDark ? '☀' : '☾';
+});
+
+// Smooth scroll + active state for category nav
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// Update active cat button on scroll
+const sections = ['stereo','digital','allinone','lamps','accessories'];
+const catBtns = document.querySelectorAll('.cat-btn');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 160) current = id;
+  });
+  catBtns.forEach((btn, i) => {
+    btn.classList.toggle('active', sections[i] === current);
+  });
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
