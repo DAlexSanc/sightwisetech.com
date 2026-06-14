@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — SightwiseTech</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --accent: #0099cc; --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --mono: 'Share Tech Mono', monospace; --sans: 'Barlow', sans-serif; --cond: 'Barlow Condensed', sans-serif; }
+[data-theme="light"] { --bg: #f7f8fa; --bg2: #ffffff; --bg3: #eef0f4; --island: #12151a; --island2: #191d24; --island3: #1f242d; --border: #e2e5eb; --border2: #d0d4dc; --mid: #8a93a2; --text: #1a1e26; --text2: #5a6272; }
+[data-theme="dark"]  { --bg: #12151a; --bg2: #191d24; --bg3: #1f242d; --island: #191d24; --island2: #1f242d; --island3: #252b36; --border: #252b36; --border2: #2e3645; --mid: #6b7585; --text: #e4e8ef; --text2: #9aa3b0; }
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; height: 64px; background: #12151a; border-bottom: 1px solid #1e2530; }
+.nav-logo { font-family: var(--cond); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.04em; color: #e4e8ef; text-decoration: none; }
+.nav-logo span { color: var(--accent); }
+.nav-logo-img { height: 30px; width: auto; display: block; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.theme-toggle { width: 34px; height: 34px; border-radius: var(--r-sm); border: 1px solid #2a3040; background: #1a1f28; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #6b7585; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.nav-cta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: var(--r-sm); padding: 7px 18px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+.nav-cta:hover { background: var(--accent); color: #12151a; }
+
+/* PAGE HEADER */
+.page-header { background: #12151a; padding: 8rem 4rem 5rem; position: relative; overflow: hidden; }
+.page-header-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,153,204,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,153,204,0.03) 1px, transparent 1px); background-size: 48px 48px; }
+.page-header-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+.page-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+.page-title { font-family: var(--cond); font-weight: 700; font-size: clamp(2.2rem, 4vw, 3.5rem); color: #f5f7fa; line-height: 1.05; margin-bottom: 1rem; }
+.page-sub { font-size: 1rem; color: #6b7585; line-height: 1.7; }
+
+.header-stat-row { display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-end; }
+.header-stat { text-align: right; }
+.header-stat-num { font-family: var(--cond); font-weight: 700; font-size: 2.8rem; color: #f5f7fa; line-height: 1; }
+.header-stat-num span { color: var(--accent); }
+.header-stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #6b7585; }
+
+/* SECTIONS */
+section { padding: 6rem 4rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+.section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+.section-title { font-family: var(--cond); font-weight: 700; font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--text); line-height: 1.1; margin-bottom: 1rem; transition: color 0.3s; }
+.section-sub { font-size: 1rem; color: var(--text2); max-width: 580px; line-height: 1.7; transition: color 0.3s; }
+
+/* STORY */
+.story-section { background: var(--bg); transition: background 0.3s; }
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.story-text { display: flex; flex-direction: column; gap: 1.2rem; }
+.story-p { font-size: 0.95rem; color: var(--text2); line-height: 1.8; transition: color 0.3s; }
+.story-p strong { color: var(--text); font-weight: 500; }
+
+.story-timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-item { display: flex; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
+.timeline-item:first-child { padding-top: 0; }
+.timeline-year { font-family: var(--cond); font-weight: 700; font-size: 1.4rem; color: var(--accent); flex-shrink: 0; width: 60px; line-height: 1.2; }
+.timeline-content {}
+.timeline-title { font-family: var(--cond); font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.25rem; transition: color 0.3s; }
+.timeline-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; transition: color 0.3s; }
+
+/* VALUES */
+.values-section { background: var(--bg2); transition: background 0.3s; }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 3rem; }
+.value-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 2rem; transition: border-color 0.2s, background 0.3s; }
+.value-card:hover { border-color: var(--accent); }
+.value-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+.value-title { font-family: var(--cond); font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0.5rem; transition: color 0.3s; }
+.value-desc { font-size: 0.875rem; color: var(--text2); line-height: 1.6; transition: color 0.3s; }
+
+/* LOCATION — dark island */
+.location-section { background: var(--island); transition: background 0.3s; }
+.location-section .section-title { color: #e4e8ef; }
+.location-section .section-sub   { color: #6b7585; }
+.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+
+.location-details { display: flex; flex-direction: column; gap: 1.5rem; }
+.location-item { display: flex; flex-direction: column; gap: 0.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.location-item:last-child { border-bottom: none; padding-bottom: 0; }
+.location-item-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #6b7585; }
+.location-item-value { font-size: 0.95rem; color: #e4e8ef; }
+
+.location-map-placeholder { background: var(--island2); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--r-lg); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; }
+.map-placeholder-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,153,204,0.4); }
+.map-placeholder-icon { font-size: 2rem; opacity: 0.3; }
+
+/* CTA */
+.cta-strip { background: var(--accent); padding: 4rem; text-align: center; }
+.cta-strip h2 { font-family: var(--cond); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem); color: #fff; margin-bottom: 0.6rem; }
+.cta-strip p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 2rem; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-white { background: #fff; color: var(--accent); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 28px; border-radius: var(--r-sm); text-decoration: none; font-weight: 500; transition: opacity 0.2s; }
+.btn-white:hover { opacity: 0.88; }
+.btn-outline-white { background: transparent; color: #fff; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 28px; border-radius: var(--r-sm); border: 1px solid rgba(255,255,255,0.5); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+.btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* FOOTER */
+footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 4rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-logo { font-family: var(--cond); font-weight: 700; font-size: 1.1rem; color: #e4e8ef; }
+.footer-logo span { color: var(--accent); }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: #6b7585; letter-spacing: 0.08em; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/logo-white-ink.png" alt="SightwiseTech" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="applications.html">Applications</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">☀</button>
+    <a href="contact.html" class="nav-cta">Request Quote</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-inner">
+    <div>
+      <div class="page-eyebrow">Who we are</div>
+      <h1 class="page-title">Built by Engineers,<br>for the Factory Floor</h1>
+      <p class="page-sub">SightwiseTech was founded on the conviction that industrial inspection should be accessible, intelligent, and backed by people who have actually worked in manufacturing.</p>
+    </div>
+    <div class="header-stat-row">
+      <div class="header-stat">
+        <div class="header-stat-num">9<span>+</span></div>
+        <div class="header-stat-label">Years in manufacturing</div>
+      </div>
+      <div class="header-stat">
+        <div class="header-stat-num">5</div>
+        <div class="header-stat-label">Industries served</div>
+      </div>
+      <div class="header-stat">
+        <div class="header-stat-num">GDL</div>
+        <div class="header-stat-label">Based in Guadalajara, MX</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story-section">
+  <div class="section-inner">
+    <div class="story-grid reveal">
+      <div>
+        <div class="section-label">Our story</div>
+        <h2 class="section-title">From the Shop Floor<br>to the Startup</h2>
+        <div class="story-text" style="margin-top: 1.5rem;">
+          <p class="story-p">SightwiseTech grew out of <strong>nearly a decade of hands-on manufacturing experience</strong> — starting as a field service engineer and progressing through automation, robotics, and systems integration roles across the industry.</p>
+          <p class="story-p">That background made one thing clear: most manufacturers needed <strong>better visibility into their process</strong> — not more complexity. The inspection tools on the market were either too simple, too expensive, or too disconnected from real production constraints.</p>
+          <p class="story-p">We founded SightwiseTech in Guadalajara to change that. We distribute and configure <strong>precision optical and digital inspection systems</strong>, and we build our own AI-powered software tools to complement them — designed to be deployed and understood by engineers on the floor, not just specialists.</p>
+          <p class="story-p">We serve the manufacturing industries that define the Jalisco and wider Mexican industrial economy: electronics, medical devices, aerospace, metal-mechanical, and automotive.</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Timeline</div>
+        <div class="timeline-item" style="margin-top:1rem;">
+          <div class="timeline-year">2016</div>
+          <div class="timeline-content">
+            <div class="timeline-title">First steps in manufacturing</div>
+            <div class="timeline-desc">Started as a field service engineer at 16 — first exposure to industrial equipment, automation, and production environments.</div>
+          </div>
+        </div>
+        <div class="story-timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Automation & robotics roles</div>
+              <div class="timeline-desc">Progressed into automation integration and robotics — working across multiple industries and manufacturing contexts in the region.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Vision & inspection focus</div>
+              <div class="timeline-desc">Deep work in machine vision, camera systems, and inspection pipelines — identifying a gap in accessible, locally-supported inspection solutions for Mexican manufacturers.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-content">
+              <div class="timeline-title">SightwiseTech founded</div>
+              <div class="timeline-desc">Launched in Guadalajara as a distribution and integration business for optical and digital inspection systems, with in-house AI software development.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-content">
+              <div class="timeline-title">TRAINR & INSPECTR launched</div>
+              <div class="timeline-desc">First proprietary software tools released — TRAINR for model training and export, INSPECTR for edge AI inspection deployment on Hailo hardware.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">Now</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Growing the catalogue & team</div>
+              <div class="timeline-desc">Expanding the product range, building the distribution network, and deepening partnerships with manufacturers across Jalisco and beyond.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="section-inner">
+    <div class="section-label">What we stand for</div>
+    <h2 class="section-title">Our Principles</h2>
+    <div class="values-grid reveal">
+      <div class="value-card">
+        <div class="value-icon">🔬</div>
+        <div class="value-title">Engineering first</div>
+        <p class="value-desc">Every recommendation we make is backed by real technical knowledge. We won't sell you something that doesn't fit your process.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-title">Local accountability</div>
+        <p class="value-desc">Based in Guadalajara, we're reachable in your time zone, in your language, and on-site when it matters. No overseas support tickets.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <div class="value-title">Practical AI</div>
+        <p class="value-desc">We build AI tools that work in real production environments — not demos. Onboarding a new product should take hours, not months.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔧</div>
+        <div class="value-title">Configurable, not rigid</div>
+        <p class="value-desc">We don't push fixed SKUs. We configure systems around your application, your budget, and your production constraints.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📈</div>
+        <div class="value-title">Long-term partnership</div>
+        <p class="value-desc">We want to be your inspection supplier for years, not just a one-time sale. That means honest advice and support that outlasts the invoice.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌎</div>
+        <div class="value-title">Made for Mexican industry</div>
+        <p class="value-desc">We understand the specific challenges of manufacturing in Mexico — import logistics, budget constraints, and the pace of Jalisco's industrial sector.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section">
+  <div class="section-inner">
+    <div class="section-label">Where we are</div>
+    <h2 class="section-title">Guadalajara, Jalisco</h2>
+    <p class="section-sub">At the heart of Mexico's largest technology and manufacturing hub — close to the customers we serve.</p>
+    <div class="location-grid reveal">
+      <div class="location-details">
+        <div class="location-item">
+          <span class="location-item-label">Headquarters</span>
+          <span class="location-item-value">Guadalajara, Jalisco — México</span>
+        </div>
+        <div class="location-item">
+          <span class="location-item-label">Service area</span>
+          <span class="location-item-value">Mexico · United States · Argentina · Brazil</span>
+        </div>
+        <div class="location-item">
+          <span class="location-item-label">Languages</span>
+          <span class="location-item-value">Spanish · English · Portuguese</span>
+        </div>
+        <div class="location-item">
+          <span class="location-item-label">Email</span>
+          <span class="location-item-value"><a href="mailto:diego.sanchez@sightwisetech.com" style="color:var(--accent);text-decoration:none;">diego.sanchez@sightwisetech.com</a></span>
+        </div>
+      </div>
+      <div class="location-map-placeholder">
+        <div class="map-placeholder-icon">📍</div>
+        <div class="map-placeholder-label">Guadalajara, Jalisco · México</div>
+        <!-- Optional: embed Google Maps iframe here later -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <h2>Let's work together</h2>
+  <p>Whether you need a system, a quote, or just a conversation about your inspection challenge.</p>
+  <div class="cta-actions">
+    <a href="contact.html" class="btn-white">Get in touch</a>
+    <a href="products.html" class="btn-outline-white">View products</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Sightwise<span>Tech</span></div>
+    <ul class="footer-links">
+      <li><a href="products.html">Products</a></li>
+      <li><a href="applications.html">Applications</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 SightwiseTech — Guadalajara, MX</div>
+  </div>
+</footer>
+
+<script>
+const btn = document.getElementById('themeBtn');
+const html = document.documentElement;
+btn.addEventListener('click', () => { const d = html.getAttribute('data-theme') === 'dark'; html.setAttribute('data-theme', d ? 'light' : 'dark'); btn.textContent = d ? '☀' : '☾'; });
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — SightwiseTech</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --accent:  #0099cc;
+  --r-sm:    6px;
+  --r-md:    10px;
+  --r-lg:    16px;
+  --mono:    'Share Tech Mono', monospace;
+  --sans:    'Barlow', sans-serif;
+  --cond:    'Barlow Condensed', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg:      #f7f8fa;
+  --bg2:     #ffffff;
+  --bg3:     #eef0f4;
+  --island:  #12151a;
+  --island2: #191d24;
+  --border:  #e2e5eb;
+  --border2: #d0d4dc;
+  --mid:     #8a93a2;
+  --text:    #1a1e26;
+  --text2:   #5a6272;
+  --input-bg:#ffffff;
+}
+
+[data-theme="dark"] {
+  --bg:      #12151a;
+  --bg2:     #191d24;
+  --bg3:     #1f242d;
+  --island:  #191d24;
+  --island2: #1f242d;
+  --border:  #252b36;
+  --border2: #2e3645;
+  --mid:     #6b7585;
+  --text:    #e4e8ef;
+  --text2:   #9aa3b0;
+  --input-bg:#1a1f28;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--sans); font-weight: 300; line-height: 1.6;
+  overflow-x: hidden; transition: background 0.3s, color 0.3s;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+
+/* ── NAV — always dark ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4rem; height: 64px;
+  background: #12151a; border-bottom: 1px solid #1e2530;
+}
+.nav-logo { font-family: var(--cond); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.04em; color: #e4e8ef; text-decoration: none; }
+.nav-logo span { color: var(--accent); }
+.nav-logo-img { height: 30px; width: auto; display: block; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.theme-toggle { width: 34px; height: 34px; border-radius: var(--r-sm); border: 1px solid #2a3040; background: #1a1f28; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #6b7585; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.nav-cta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: var(--r-sm); padding: 7px 18px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+.nav-cta:hover { background: var(--accent); color: #12151a; }
+
+/* ── PAGE HEADER — dark ── */
+.page-header {
+  background: #12151a; padding: 8rem 4rem 4rem;
+  position: relative; overflow: hidden;
+}
+.page-header-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(0,153,204,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,153,204,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.page-header-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; }
+.page-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+.page-title { font-family: var(--cond); font-weight: 700; font-size: clamp(2.2rem, 4vw, 3.5rem); color: #f5f7fa; line-height: 1.05; margin-bottom: 1rem; }
+.page-sub { font-size: 1rem; color: #6b7585; max-width: 520px; line-height: 1.7; }
+
+/* ── MAIN CONTACT BODY ── */
+.contact-body {
+  flex: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 4rem 4rem 6rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ── LEFT: INFO PANEL ── */
+.contact-info { display: flex; flex-direction: column; gap: 2rem; }
+
+.info-block {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1.8rem;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.info-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.info-label::before { content: ''; display: block; width: 14px; height: 1px; background: var(--accent); }
+
+.info-item { display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 1rem; }
+.info-item:last-child { margin-bottom: 0; }
+
+.info-item-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+.info-item-value { font-size: 0.9rem; color: var(--text); transition: color 0.3s; }
+.info-item-value a { color: var(--accent); text-decoration: none; }
+.info-item-value a:hover { text-decoration: underline; }
+
+/* response time badge */
+.response-badge {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--island); border-radius: var(--r-lg);
+  padding: 1.2rem 1.5rem;
+}
+.response-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; animation: pulse-green 2s ease-in-out infinite; }
+@keyframes pulse-green { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+.response-text { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7585; line-height: 1.6; }
+.response-text strong { color: #e4e8ef; display: block; }
+
+/* inquiry types */
+.inquiry-types { display: flex; flex-direction: column; gap: 8px; }
+.inquiry-type {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0.75rem 1rem; border-radius: var(--r-sm);
+  border: 1px solid var(--border2); background: var(--bg);
+  font-size: 0.85rem; color: var(--text2);
+  transition: border-color 0.2s, background 0.3s;
+  cursor: default;
+}
+.inquiry-type:hover { border-color: var(--accent); }
+.inquiry-type-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* ── RIGHT: FORM ── */
+.contact-form-wrap {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 2.5rem;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.form-header { margin-bottom: 2rem; }
+.form-title { font-family: var(--cond); font-weight: 700; font-size: 1.6rem; color: var(--text); margin-bottom: 0.3rem; transition: color 0.3s; }
+.form-sub { font-size: 0.875rem; color: var(--text2); line-height: 1.6; transition: color 0.3s; }
+
+/* Formspree form — no <form> tag needed in React artifacts but this is plain HTML */
+.contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.field label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mid); transition: color 0.3s;
+}
+
+.field input,
+.field select,
+.field textarea {
+  background: var(--input-bg);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-family: var(--sans); font-size: 0.9rem; font-weight: 300;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.3s, color 0.3s;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.field input::placeholder,
+.field textarea::placeholder { color: var(--mid); opacity: 0.6; }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus { border-color: var(--accent); }
+
+.field select { cursor: pointer; }
+[data-theme="dark"] .field select option { background: #1a1f28; }
+
+.field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+.form-note {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+  color: var(--mid); line-height: 1.6; padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.submit-btn {
+  background: var(--accent); color: #fff;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 14px 28px;
+  border-radius: var(--r-sm); border: none;
+  cursor: pointer; transition: opacity 0.2s;
+  align-self: flex-start;
+}
+.submit-btn:hover { opacity: 0.85; }
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* success state */
+.form-success {
+  display: none;
+  background: var(--island);
+  border-radius: var(--r-lg);
+  padding: 3rem 2rem;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.success-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(0,153,204,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin: 0 auto;
+}
+
+.success-title { font-family: var(--cond); font-weight: 700; font-size: 1.4rem; color: #e4e8ef; }
+.success-sub { font-size: 0.875rem; color: #6b7585; max-width: 320px; line-height: 1.6; }
+
+/* ── FOOTER — always dark ── */
+footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 4rem; margin-top: auto; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-logo { font-family: var(--cond); font-weight: 700; font-size: 1.1rem; color: #e4e8ef; }
+.footer-logo span { color: var(--accent); }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: #6b7585; letter-spacing: 0.08em; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/logo-white-ink.png" alt="SightwiseTech" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="applications.html">Applications</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">☀</button>
+    <a href="contact.html" class="nav-cta">Request Quote</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Get in touch</div>
+    <h1 class="page-title">Contact &<br>Request a Quote</h1>
+    <p class="page-sub">Tell us about your application and we'll configure the right system — or just reach out with a question.</p>
+  </div>
+</div>
+
+<!-- CONTACT BODY -->
+<div class="contact-body reveal">
+
+  <!-- LEFT: INFO -->
+  <div class="contact-info">
+
+    <div class="response-badge">
+      <div class="response-dot"></div>
+      <div class="response-text">
+        <strong>Typically within 24 hours</strong>
+        Mon–Fri · Guadalajara, MX (CST)
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-label">Direct contact</div>
+      <div class="info-item">
+        <span class="info-item-label">Email</span>
+        <span class="info-item-value"><a href="mailto:diego.sanchez@sightwisetech.com">diego.sanchez@sightwisetech.com</a></span>
+      </div>
+      <div class="info-item">
+        <span class="info-item-label">Location</span>
+        <span class="info-item-value">Guadalajara, Jalisco — México</span>
+      </div>
+      <div class="info-item">
+        <span class="info-item-label">Language</span>
+        <span class="info-item-value">Spanish &amp; English</span>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-label">We can help with</div>
+      <div class="inquiry-types">
+        <div class="inquiry-type"><div class="inquiry-type-dot"></div>Product selection &amp; configuration</div>
+        <div class="inquiry-type"><div class="inquiry-type-dot"></div>Custom system quotes</div>
+        <div class="inquiry-type"><div class="inquiry-type-dot"></div>Technical specifications</div>
+        <div class="inquiry-type"><div class="inquiry-type-dot"></div>Software &amp; integration support</div>
+        <div class="inquiry-type"><div class="inquiry-type-dot"></div>Distributor &amp; partnership enquiries</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="contact-form-wrap">
+    <div class="form-header">
+      <div class="form-title">Send us a message</div>
+      <p class="form-sub">Fill in the details below and we'll get back to you with the right solution for your application.</p>
+    </div>
+
+    <!--
+      FORMSPREE SETUP:
+      1. Go to formspree.io and create a free account
+      2. Create a new form — you'll get an endpoint like https://formspree.io/f/xyzabcde
+      3. Replace YOUR_FORMSPREE_ID below with that code (just the ID, e.g. xyzabcde)
+      4. Formspree will email submissions to diego.sanchez@sightwisetech.com
+    -->
+    <form
+      class="contact-form"
+      id="contactForm"
+      action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+      method="POST"
+    >
+
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Full name *</label>
+          <input type="text" id="name" name="name" placeholder="Juan García" required>
+        </div>
+        <div class="field">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" placeholder="Empresa S.A. de C.V.">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="email">Email address *</label>
+          <input type="email" id="email" name="email" placeholder="juan@empresa.com" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone / WhatsApp</label>
+          <input type="tel" id="phone" name="phone" placeholder="+52 33 0000 0000">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="inquiry">Type of inquiry</label>
+        <select id="inquiry" name="inquiry">
+          <option value="" disabled selected>Select one…</option>
+          <option value="product-quote">Product quote / configuration</option>
+          <option value="technical">Technical question</option>
+          <option value="software">Software &amp; TRAINR</option>
+          <option value="partnership">Distributor / partnership</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="application">Application or industry</label>
+        <select id="application" name="application">
+          <option value="" disabled selected>Select one…</option>
+          <option value="electronics">Electronics Manufacturing</option>
+          <option value="biomedical">Biomedical / Medical Devices</option>
+          <option value="aerospace">Aerospace</option>
+          <option value="metal">Metal &amp; Mechanical</option>
+          <option value="automotive">Automotive</option>
+          <option value="other">Other / Not listed</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" placeholder="Describe your application, what you're inspecting, quantities, any specific requirements…" required></textarea>
+      </div>
+
+      <!-- hidden fields for Formspree -->
+      <input type="hidden" name="_subject" value="New enquiry — SightwiseTech">
+      <input type="text" name="_gotcha" style="display:none">
+
+      <div class="form-note">
+        // Your information is used only to respond to your enquiry and will never be shared with third parties.
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Send message →</button>
+
+    </form>
+
+    <!-- Success state — shown after submission -->
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Message received</div>
+      <p class="success-sub">We'll review your enquiry and get back to you within 24 hours.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Sightwise<span>Tech</span></div>
+    <ul class="footer-links">
+      <li><a href="products.html">Products</a></li>
+      <li><a href="applications.html">Applications</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 SightwiseTech — Guadalajara, MX</div>
+  </div>
+</footer>
+
+<script>
+// Theme toggle
+const btn = document.getElementById('themeBtn');
+const html = document.documentElement;
+btn.addEventListener('click', () => {
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  btn.textContent = isDark ? '☀' : '☾';
+});
+
+// Reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Form submission handler (works with Formspree AJAX)
+const form = document.getElementById('contactForm');
+const successDiv = document.getElementById('formSuccess');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      form.style.display = 'none';
+      successDiv.style.display = 'flex';
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message →';
+      alert('Something went wrong — please email us directly at diego.sanchez@sightwisetech.com');
+    }
+  } catch {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send message →';
+    alert('Something went wrong — please email us directly at diego.sanchez@sightwisetech.com');
+  }
+});
+</script>
+</body>
+</html>
