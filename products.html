@@ -324,11 +324,11 @@ footer {
 <!-- STICKY CATEGORY NAV -->
 <div class="cat-nav">
   <div class="cat-nav-inner">
-    <button class="cat-btn active" onclick="scrollTo('stereo')">Stereo Microscopes</button>
-    <button class="cat-btn" onclick="scrollTo('digital')">Digital Inspection</button>
-    <button class="cat-btn" onclick="scrollTo('allinone')">All-in-One Units</button>
-    <button class="cat-btn" onclick="scrollTo('lamps')">Magnifier Lamps</button>
-    <button class="cat-btn" onclick="scrollTo('accessories')">Accessories</button>
+    <button class="cat-btn active" onclick="scrollToCat('stereo', this)">Stereo Microscopes</button>
+    <button class="cat-btn" onclick="scrollToCat('digital', this)">Digital Inspection</button>
+    <button class="cat-btn" onclick="scrollToCat('allinone', this)">All-in-One Units</button>
+    <button class="cat-btn" onclick="scrollToCat('lamps', this)">Magnifier Lamps</button>
+    <button class="cat-btn" onclick="scrollToCat('accessories', this)">Accessories</button>
   </div>
 </div>
 
@@ -485,10 +485,10 @@ btn.addEventListener('click', () => {
 });
 
 // Smooth scroll + active state for category nav
-function scrollTo(id) {
+function scrollToCat(id, el) {
   document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
+  el.classList.add('active');
 }
 
 // Update active cat button on scroll
