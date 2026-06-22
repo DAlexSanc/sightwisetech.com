@@ -172,25 +172,24 @@ nav {
   padding: 3rem 4rem 6rem;
   position: relative;
 }
-/* Big-S catalogue watermark */
-.products-body::before {
+/* OPTION A — full-bleed S-curve dividers */
+.products-body > * { position: relative; z-index: 1; }
+.cat-section { position: relative; }
+.cat-section:nth-child(even)::before,
+.cat-section:nth-child(odd)::before {
   content: '';
-  position: fixed;
-  top: 50%; right: -8%;
-  transform: translateY(-50%);
-  width: 50vw; max-width: 760px;
+  position: absolute;
+  top: 30%;
+  width: 42vw; max-width: 620px;
   aspect-ratio: 990 / 1400;
   background: url('images/swt_background_a2.jpg') no-repeat center / contain;
-  opacity: 0.025;
-  pointer-events: none;
-  z-index: 0;
-}
-[data-theme="dark"] .products-body::before {
-  /* invert the black artwork to light on dark bg */
-  filter: invert(1);
   opacity: 0.04;
+  pointer-events: none;
+  z-index: -1;
 }
-.products-body > * { position: relative; z-index: 1; }
+.cat-section:nth-child(odd)::before { right: -16vw; transform: scaleX(1); }
+.cat-section:nth-child(even)::before { left: -16vw; transform: scaleX(-1); }
+[data-theme="dark"] .cat-section::before { filter: invert(1); opacity: 0.05; }
 
 /* ── CATEGORY SECTION ── */
 .cat-section { margin-bottom: 5rem; scroll-margin-top: 140px; padding-bottom: 4rem; border-bottom: 1px solid var(--border); }
