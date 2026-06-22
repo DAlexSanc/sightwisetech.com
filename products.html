@@ -183,25 +183,22 @@ nav {
 .cat-section::before {
   content: '';
   position: absolute;
-  top: 0; bottom: 0;
-  width: 46%;
+  top: 0; bottom: 0; left: 0; right: 0;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   opacity: 0.04;
   pointer-events: none;
   z-index: 0;
 }
-/* Odd sections (1,3,5): left C-curve, anchored to the RIGHT edge */
+/* Odd sections (1,3,5): left C-curve, filling the full width */
 #binocular::before, #digital::before, #magnifiers::before {
-  right: -4%;
   background-image: url('images/swt_s_ink.png');
-  background-position: right center;
+  background-position: center;
 }
-/* Even sections (2,4,6): right D-curve, anchored to the LEFT edge */
+/* Even sections (2,4,6): right D-curve, filling the full width */
 #trinocular::before, #ufa::before, #accessories::before {
-  left: -4%;
   background-image: url('images/swt_s_ink_b.png');
-  background-position: left center;
+  background-position: center;
 }
 [data-theme="dark"] #binocular::before,
 [data-theme="dark"] #digital::before,
