@@ -175,38 +175,39 @@ nav {
 /* Ghosted category codes + full-width S background layer */
 .products-body { position: relative; }
 
-/* Full-width soft S layer — confined to the white products body only */
+/* Full-width soft S layer — spans the full body width from the left edge */
 .products-body::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: url('images/swt_s_ink.png') no-repeat;
-  background-position: right -8% top 12%;
-  background-size: auto 78%;
-  opacity: 0.05;
+  top: 2rem; left: 0; right: 0;
+  height: 1200px;
+  background: url('images/swt_s_ink.png') no-repeat left top;
+  background-size: 100% auto;
+  opacity: 0.035;
   pointer-events: none;
   z-index: 0;
 }
 [data-theme="dark"] .products-body::before {
   background-image: url('images/swt_s_ink_white.png');
-  opacity: 0.045;
+  opacity: 0.05;
 }
 .products-body > * { position: relative; z-index: 1; }
 
 .cat-section { position: relative; }
+/* Ghost category code — grey, contained to the header zone so it doesn't overlap cards */
 .cat-section .cat-ghost {
   position: absolute;
-  top: -2.5rem; right: 0;
+  top: -1.5rem; right: 0;
   font-family: var(--cond); font-weight: 700;
-  font-size: clamp(8rem, 18vw, 16rem);
+  font-size: clamp(6rem, 12vw, 11rem);
   line-height: 0.8;
-  color: var(--accent);
-  opacity: 0.13;
+  color: var(--text);
+  opacity: 0.06;
   pointer-events: none;
   z-index: 0;
   letter-spacing: -0.04em;
 }
-[data-theme="dark"] .cat-section .cat-ghost { opacity: 0.16; }
+[data-theme="dark"] .cat-section .cat-ghost { color: #ffffff; opacity: 0.07; }
 
 /* ── CATEGORY SECTION ── */
 .cat-section { margin-bottom: 5rem; scroll-margin-top: 140px; padding-bottom: 4rem; border-bottom: 1px solid var(--border); }
