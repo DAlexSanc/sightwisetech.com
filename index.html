@@ -194,6 +194,17 @@ nav {
 }
 .btn-primary:hover { opacity: 0.85; }
 
+.btn-download {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: #f5f7fa;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 12px 24px; border-radius: var(--r-sm);
+  border: 1px solid rgba(245,247,250,0.3); text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.btn-download:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,153,204,0.06); }
+.download-icon { font-size: 14px; }
+
 .btn-ghost {
   color: rgba(228,232,239,0.6); font-family: var(--mono);
   font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
@@ -219,6 +230,35 @@ nav {
 
 /* scope visual */
 .hero-visual { position: relative; }
+
+/* Hero product photo with detection-bracket framing */
+.hero-product {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.hero-product-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
+  animation: heroFloat 6s ease-in-out infinite;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.hero-product-badge { position: absolute; inset: 0; pointer-events: none; }
+.hero-badge-corner {
+  position: absolute; width: 22px; height: 22px;
+  border-color: var(--accent); border-style: solid; border-width: 0;
+}
+.hero-badge-corner.tl { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.hero-badge-corner.tr { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.hero-badge-corner.bl { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.hero-badge-corner.br { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
 
 .hero-scope {
   width: 100%; aspect-ratio: 1; max-width: 400px;
@@ -457,22 +497,20 @@ footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padd
       <p class="hero-sub">Machine vision inspection systems, high-resolution cameras, and AI-powered quality control solutions engineered for demanding manufacturing environments.</p>
       <div class="hero-actions">
         <a href="products.html" class="btn-primary">Explore Products</a>
-        <a href="applications.html" class="btn-ghost">View Applications</a>
+        <a href="catalog/SightwiseTech-Catalog.pdf" class="btn-download" download>
+          <span class="download-icon">↓</span> Download Catalogue
+        </a>
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-scope">
-        <div class="scope-ring"></div>
-        <div class="scope-ring"></div>
-        <div class="scope-ring"></div>
-        <div class="scope-ring"></div>
-        <div class="scope-cross"></div>
-        <div class="scope-center"></div>
-        <span class="scope-tick t">000°</span>
-        <span class="scope-tick b">180°</span>
-        <span class="scope-tick l">270°</span>
-        <span class="scope-tick r">090°</span>
-        <div class="scope-data">RES 20MP<br>FPS 120<br>SYNC ✓</div>
+      <div class="hero-product">
+        <img src="images/swt_pantalla_1.jpg" alt="SightwiseTech digital inspection system with live PCB capture" class="hero-product-img">
+        <div class="hero-product-badge">
+          <span class="hero-badge-corner tl"></span>
+          <span class="hero-badge-corner tr"></span>
+          <span class="hero-badge-corner bl"></span>
+          <span class="hero-badge-corner br"></span>
+        </div>
       </div>
     </div>
   </div>

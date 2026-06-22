@@ -130,6 +130,15 @@ nav {
 }
 
 .page-sub { font-size: 1rem; color: #6b7585; max-width: 520px; line-height: 1.7; }
+.page-download {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 1.8rem;
+  background: var(--accent); color: #fff;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 12px 24px; border-radius: 6px;
+  text-decoration: none; transition: opacity 0.2s;
+}
+.page-download:hover { opacity: 0.85; }
+.page-download .download-icon { font-size: 14px; }
 
 /* ── CATEGORY NAV ── */
 .cat-nav {
@@ -166,7 +175,19 @@ nav {
 /* ── CATEGORY SECTION ── */
 .cat-section { margin-bottom: 5rem; scroll-margin-top: 140px; }
 
-.cat-header { margin-bottom: 2rem; }
+.cat-header { margin-bottom: 2rem; display: flex; gap: 1.5rem; align-items: flex-start; }
+
+.cat-code {
+  flex-shrink: 0;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--island);
+  color: var(--accent);
+  font-family: var(--mono); font-size: 13px; font-weight: 400;
+  letter-spacing: 0.05em;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(0,153,204,0.25);
+}
 
 .cat-label {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
@@ -234,9 +255,9 @@ nav {
   transition: color 0.3s;
 }
 
-.prod-sku {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--mid);
+.prod-meta {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--mid); line-height: 1.4;
 }
 
 .prod-cta {
@@ -318,135 +339,170 @@ footer {
     <div class="page-eyebrow">Catalogue</div>
     <h1 class="page-title">Products &<br>Systems</h1>
     <p class="page-sub">Optical and digital inspection systems, illumination tools, and accessories — configured for the demands of industrial and precision manufacturing.</p>
+    <a href="catalog/SightwiseTech-Catalog.pdf" class="page-download" download>
+      <span class="download-icon">↓</span> Download Full Catalogue (PDF)
+    </a>
   </div>
 </div>
 
 <!-- STICKY CATEGORY NAV -->
 <div class="cat-nav">
   <div class="cat-nav-inner">
-    <button class="cat-btn active" onclick="scrollToCat('stereo', this)">Stereo Microscopes</button>
-    <button class="cat-btn" onclick="scrollToCat('digital', this)">Digital Inspection</button>
-    <button class="cat-btn" onclick="scrollToCat('allinone', this)">All-in-One Units</button>
-    <button class="cat-btn" onclick="scrollToCat('lamps', this)">Magnifier Lamps</button>
-    <button class="cat-btn" onclick="scrollToCat('accessories', this)">Accessories</button>
+    <button class="cat-btn active" onclick="scrollToCat('binocular', this)">Binocular Microscopes</button>
+    <button class="cat-btn" onclick="scrollToCat('trinocular', this)">Trinocular Microscopes</button>
+    <button class="cat-btn" onclick="scrollToCat('digital', this)">Digital Microscopes</button>
+    <button class="cat-btn" onclick="scrollToCat('ufa', this)">Autofocus Macro</button>
+    <button class="cat-btn" onclick="scrollToCat('magnifiers', this)">Bench Magnifiers</button>
+    <button class="cat-btn" onclick="scrollToCat('accessories', this)">System Accessories</button>
   </div>
 </div>
 
 <!-- PRODUCTS BODY -->
 <div class="products-body">
 
-  <!-- STEREO MICROSCOPES -->
-  <div class="cat-section reveal" id="stereo">
+  <!-- BINOCULAR MICROSCOPES -->
+  <div class="cat-section reveal" id="binocular">
     <div class="cat-header">
-      <div class="cat-label">Category 01</div>
-      <div class="cat-title">Stereo Microscopes</div>
-      <p class="cat-desc">Optical zoom stereo microscopes on articulated arm and pillar stands. Eyepiece-based, true optical reliability built for industries — ideal for hands-on inspection and assembly tasks.</p>
+      <div class="cat-code">BM</div>
+      <div>
+        <div class="cat-label">Category 01</div>
+        <div class="cat-title">Binocular Microscopes</div>
+        <p class="cat-desc">SWT Stereo and Rework Stereo Series. Standard magnification 6.7&times;&ndash;45&times;, on flex articulated arm or full-metal rework stand with LED ring light.</p>
+      </div>
     </div>
     <div class="prod-grid">
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0164.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0165.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0168.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0177.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0184.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0185.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0192.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Base Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0194.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Base Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0258.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0253.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — GigE</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0217.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0220.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0277.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope - Binocular Body</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0279.jpg" alt="Stereo Microscope" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stereo Microscope — Trinocular Body</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a> 
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0164.jpg" alt="SWT Stereo Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Stereo Series</div><div class="prod-meta">Articulated arm + LED ring light</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0165.jpg" alt="SWT Stereo Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Stereo Series</div><div class="prod-meta">Articulated arm + LED ring light</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0172.jpg" alt="Flex Articulated Arm" loading="lazy"></div><div class="prod-info"><div class="prod-name">Flex Articulated Arm</div><div class="prod-meta">Standard arm with table clamp</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0177.jpg" alt="SWT Stereo Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Stereo Series</div><div class="prod-meta">Articulated arm + compact screen</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0192.jpg" alt="SWT Rework Stereo Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Rework Stereo Series</div><div class="prod-meta">Full-metal stand, high-temp rework</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0194.jpg" alt="SWT Rework Stereo Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Rework Stereo Series</div><div class="prod-meta">Full-metal stand, high-temp rework</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0277.jpg" alt="SWT Stereo Head" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Stereo Head</div><div class="prod-meta">Binocular zoom body</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0281.jpg" alt="SWT Stereo Head" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Stereo Head</div><div class="prod-meta">Binocular zoom body, 0.5&times; aux</div><div class="prod-cta">Request info</div></div></a>
     </div>
   </div>
 
-  <!-- DIGITAL INSPECTION SYSTEMS -->
+  <!-- TRINOCULAR MICROSCOPES -->
+  <div class="cat-section reveal" id="trinocular">
+    <div class="cat-header">
+      <div class="cat-code">TM</div>
+      <div>
+        <div class="cat-label">Category 02</div>
+        <div class="cat-title">Trinocular Microscopes</div>
+        <p class="cat-desc">SWT Trinoc Series. 4K live video over the trinocular port, magnification up to 250&times;, on articulated post or dual-boom stand with LED ring or fiber optic illumination.</p>
+      </div>
+    </div>
+    <div class="prod-grid">
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0168.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Trinocular + camera, articulated arm</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0184.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Trinocular + 4K camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0185.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Trinocular + 4K camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0187.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Trinocular + camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0189.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Trinocular + camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0202.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Trinocular + 4K camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0203.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Trinocular + camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0217.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Dual-boom stand</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0220.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Dual-boom stand + light</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0225.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Dual-boom + 4K camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0227.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Dual-boom + 4K camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0228.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Articulated post + compact screen</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0235.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Dual-boom + camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0237.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Dual-boom + camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0239.jpg" alt="SWT Trinoc Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Series</div><div class="prod-meta">Dual-boom + camera + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0279.jpg" alt="SWT Trinoc Head" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Trinoc Head</div><div class="prod-meta">Trinocular zoom body</div><div class="prod-cta">Request info</div></div></a>
+    </div>
+  </div>
+
+  <!-- DIGITAL MICROSCOPES -->
   <div class="cat-section reveal" id="digital">
     <div class="cat-header">
-      <div class="cat-label">Category 02</div>
-      <div class="cat-title">Digital Inspection Systems</div>
-      <p class="cat-desc">Stereo and zoom inspection heads paired with digital cameras and monitors. Full digital output, configurable stands — from bench to production line.</p>
+      <div class="cat-code">DM</div>
+      <div>
+        <div class="cat-label">Category 03</div>
+        <div class="cat-title">Digital Microscopes</div>
+        <p class="cat-desc">Micro Zoom Video 360&deg; and Micro Zoom Video System. Magnification 7&times;&ndash;1250&times;, fully digital capture &mdash; no eyepieces &mdash; on a vertical track stand. Ideal for QC, R&amp;D and NPI.</p>
+      </div>
     </div>
     <div class="prod-grid">
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0187.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0189.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0202.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Trinocular + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0203.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Trinocular + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0204.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0206.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0210.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0225.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0227.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0228.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0235.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0237.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0239.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0245.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Base Stand + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0248.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Base Stand + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0251.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0252.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Pillar Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0256.jpg" alt="Digital Inspection System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Digital Inspection System — Rail Stand + Monitor</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0245.jpg" alt="Micro Zoom Video System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Micro Zoom Video System</div><div class="prod-meta">7&times;&ndash;1250&times; + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0248.jpg" alt="Micro Zoom Video System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Micro Zoom Video System</div><div class="prod-meta">Track stand + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0249.jpg" alt="Micro Zoom Video 360&deg;" loading="lazy"></div><div class="prod-info"><div class="prod-name">Micro Zoom Video 360&deg;</div><div class="prod-meta">Rotatable angled-view inspection</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0251.jpg" alt="Micro Zoom Video System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Micro Zoom Video System</div><div class="prod-meta">Track stand + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0252.jpg" alt="Micro Zoom Video System" loading="lazy"></div><div class="prod-info"><div class="prod-name">Micro Zoom Video System</div><div class="prod-meta">Track stand + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0258.jpg" alt="Micro Zoom Video 360&deg;" loading="lazy"></div><div class="prod-info"><div class="prod-name">Micro Zoom Video 360&deg;</div><div class="prod-meta">Rotatable angled-view inspection</div><div class="prod-cta">Request info</div></div></a>
     </div>
   </div>
 
-  <!-- ALL-IN-ONE DIGITAL UNITS -->
-  <div class="cat-section reveal" id="allinone">
+  <!-- ULTRA FAST AUTOFOCUS MACRO VIDEO -->
+  <div class="cat-section reveal" id="ufa">
     <div class="cat-header">
-      <div class="cat-label">Category 03</div>
-      <div class="cat-title">All-in-One Digital Units</div>
-      <p class="cat-desc">From our integrated tablet-screen inspection units with built-in display, to true autofocus systems with optical and digital zoom. Self-contained, minimal footprint — no PC required.</p>
+      <div class="cat-code">UFA</div>
+      <div>
+        <div class="cat-label">Category 04</div>
+        <div class="cat-title">Ultra Fast Autofocus Macro Video</div>
+        <p class="cat-desc">SWT Autofocus Series. FHD / 4K autofocus macro video &mdash; optical range 1&times;&ndash;30&times;, digital up to 60&times; &mdash; on boom or rail stand with 24&quot; monitor or compact screen.</p>
+      </div>
     </div>
     <div class="prod-grid">
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0286.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0290.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit — Tablet Display</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0291.jpg" alt="All-in-One Unit" loading="lazy"></div><div class="prod-info"><div class="prod-name">All-in-One Digital Unit</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-     </div>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0204.jpg" alt="SWT Autofocus Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Autofocus Series</div><div class="prod-meta">Autofocus macro + compact screen</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0206.jpg" alt="SWT Autofocus Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Autofocus Series</div><div class="prod-meta">Autofocus macro + compact screen</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0210.jpg" alt="SWT Autofocus Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Autofocus Series</div><div class="prod-meta">Autofocus macro + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0253.jpg" alt="SWT Autofocus Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Autofocus Series</div><div class="prod-meta">Rail stand + camera module</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0254.jpg" alt="SWT Autofocus Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Autofocus Series</div><div class="prod-meta">Rail stand configuration</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0256.jpg" alt="SWT Autofocus Series" loading="lazy"></div><div class="prod-info"><div class="prod-name">SWT Autofocus Series</div><div class="prod-meta">Rail stand + monitor</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0284.jpg" alt="UFA Camera Module" loading="lazy"></div><div class="prod-info"><div class="prod-name">UFA Camera Module</div><div class="prod-meta">Autofocus zoom camera</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0286.jpg" alt="UFA Camera Module" loading="lazy"></div><div class="prod-info"><div class="prod-name">UFA Camera Module</div><div class="prod-meta">Autofocus zoom camera</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0288.jpg" alt="UFA Camera Module" loading="lazy"></div><div class="prod-info"><div class="prod-name">UFA Camera Module</div><div class="prod-meta">Autofocus zoom camera, port view</div><div class="prod-cta">Request info</div></div></a>
+    </div>
   </div>
 
-  <!-- MAGNIFIER LAMPS -->
-  <div class="cat-section reveal" id="lamps">
+  <!-- BENCH MAGNIFIERS -->
+  <div class="cat-section reveal" id="magnifiers">
     <div class="cat-header">
-      <div class="cat-label">Category 04</div>
-      <div class="cat-title">Illuminated Magnifier Lamps</div>
-      <p class="cat-desc">LED-illuminated magnifying lenses on articulated arm stands. Daylight-balanced illumination for inspection, rework, assembly, and quality control benches.</p>
+      <div class="cat-code">ML</div>
+      <div>
+        <div class="cat-label">Category 05</div>
+        <div class="cat-title">Bench Magnifiers</div>
+        <p class="cat-desc">STD White LED and ESD Black LED bench magnifiers. 5.6&quot; lens, 2.25&times; magnification, shadow-free LED ring, 30&quot; articulated arm with 2.5&quot; table clamp.</p>
+      </div>
     </div>
     <div class="prod-grid">
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0268.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0269.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0270.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Square Lens</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0271.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0272.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Compact</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0273.jpg" alt="Magnifier Lamp" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illuminated Magnifier Lamp — Round Lens</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-</div>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0268.jpg" alt="ESD Black LED Magnifier" loading="lazy"></div><div class="prod-info"><div class="prod-name">ESD Black LED Magnifier</div><div class="prod-meta">5.6&quot; lens, ESD-safe</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0269.jpg" alt="ESD Black LED Magnifier" loading="lazy"></div><div class="prod-info"><div class="prod-name">ESD Black LED Magnifier</div><div class="prod-meta">5.6&quot; lens, ESD-safe</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0270.jpg" alt="ESD Black LED Magnifier" loading="lazy"></div><div class="prod-info"><div class="prod-name">ESD Black LED Magnifier</div><div class="prod-meta">5.6&quot; lens, articulated arm</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0271.jpg" alt="STD White LED Magnifier" loading="lazy"></div><div class="prod-info"><div class="prod-name">STD White LED Magnifier</div><div class="prod-meta">5.6&quot; lens, 2.25&times;</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0272.jpg" alt="STD White LED Magnifier" loading="lazy"></div><div class="prod-info"><div class="prod-name">STD White LED Magnifier</div><div class="prod-meta">5.6&quot; lens, 2.25&times;</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0273.jpg" alt="STD White LED Magnifier" loading="lazy"></div><div class="prod-info"><div class="prod-name">STD White LED Magnifier</div><div class="prod-meta">5.6&quot; lens, articulated arm</div><div class="prod-cta">Request info</div></div></a>
+    </div>
   </div>
 
-  <!-- ACCESSORIES -->
+  <!-- SYSTEM ACCESSORIES -->
   <div class="cat-section reveal" id="accessories">
     <div class="cat-header">
-      <div class="cat-label">Category 05</div>
-      <div class="cat-title">Accessories & Optics</div>
-      <p class="cat-desc">Eyepieces, C-mount adapters, illumination, and mounting hardware to configure, upgrade, or expand your inspection system.</p>
+      <div class="cat-code">ACC</div>
+      <div>
+        <div class="cat-label">Category 06</div>
+        <div class="cat-title">System Accessories</div>
+        <p class="cat-desc">Eyepieces, aux lenses, LED and fiber-optic lighting, stands, focus mounts, and 4K / FHD measuring cameras to configure or upgrade any system.</p>
+      </div>
     </div>
     <div class="prod-grid">
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0257.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stands & Arms — XL Track Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0255.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stands & Arms — AF Track Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0254.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stands & Arms — Track Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0249.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stands & Arms — Backlight Track Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0240.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stands & Arms — Boom Stand</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0213.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stands & Arms — Heavy Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0172.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Stands & Arms — Articulated Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0294.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illumination — LED Light Ring</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0298.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illumination — Aluminum LED Light Ring</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0300.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Illumination — Polarized Aluminum LED Light Ring</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0301.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Accessory - Polarizer</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0281.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Accessory - E-Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0282.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Accessory - AF Plate E-Arm</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0284.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Accessory - Micro Zoom Lense</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0302.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Accessory - Trinocular Video Coupler</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0303.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Accessory - Magnification Lense</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0305.jpg" alt="Accessory" loading="lazy"></div><div class="prod-info"><div class="prod-name">Accessory - Light Adapter</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0307.jpg" alt="Eyepieces" loading="lazy"></div><div class="prod-info"><div class="prod-name">Widefield Eyepieces — WF20×/12</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
-      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0308.jpg" alt="Eyepiece" loading="lazy"></div><div class="prod-info"><div class="prod-name">Widefield Eyepiece</div><div class="prod-sku">SKU: TBD</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0307.jpg" alt="Eyepieces &mdash; WF20&times;/12" loading="lazy"></div><div class="prod-info"><div class="prod-name">Eyepieces &mdash; WF20&times;/12</div><div class="prod-meta">10&times; / 15&times; / 20&times; / 30&times; available</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0308.jpg" alt="Eyepieces &mdash; WF10&times;/22" loading="lazy"></div><div class="prod-info"><div class="prod-name">Eyepieces &mdash; WF10&times;/22</div><div class="prod-meta">10&times; / 15&times; / 20&times; / 30&times; available</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0303.jpg" alt="Auxiliary Lens" loading="lazy"></div><div class="prod-info"><div class="prod-name">Auxiliary Lens</div><div class="prod-meta">0.3&times; / 0.5&times; / 0.7&times; / 1.5&times; / 2.0&times;</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0305.jpg" alt="Auxiliary Lens" loading="lazy"></div><div class="prod-info"><div class="prod-name">Auxiliary Lens</div><div class="prod-meta">0.3&times; / 0.5&times; / 0.7&times; / 1.5&times; / 2.0&times;</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0302.jpg" alt="C-Mount Adapter" loading="lazy"></div><div class="prod-info"><div class="prod-name">C-Mount Adapter</div><div class="prod-meta">0.5&times; camera adapter</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0294.jpg" alt="LED Ring Light" loading="lazy"></div><div class="prod-info"><div class="prod-name">LED Ring Light</div><div class="prod-meta">Best-selling standard lighting</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0298.jpg" alt="Aluminum LED Ring Light" loading="lazy"></div><div class="prod-info"><div class="prod-name">Aluminum LED Ring Light</div><div class="prod-meta">Rework-area, optional polarizer</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0300.jpg" alt="Aluminum LED Ring Light" loading="lazy"></div><div class="prod-info"><div class="prod-name">Aluminum LED Ring Light</div><div class="prod-meta">Rework-area, optional polarizer</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0301.jpg" alt="Polarizing Lens Set" loading="lazy"></div><div class="prod-info"><div class="prod-name">Polarizing Lens Set</div><div class="prod-meta">Glare elimination for shiny parts</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0291.jpg" alt="4K Camera" loading="lazy"></div><div class="prod-info"><div class="prod-name">4K Camera</div><div class="prod-meta">4K capture &amp; documentation</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0293.jpg" alt="FHD Measuring Camera" loading="lazy"></div><div class="prod-info"><div class="prod-name">FHD Measuring Camera</div><div class="prod-meta">Measurement &amp; documentation</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0290.jpg" alt="4K Touchscreen Monitor" loading="lazy"></div><div class="prod-info"><div class="prod-name">4K Touchscreen Monitor</div><div class="prod-meta">Camera combo: images, video, Wi-Fi</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0282.jpg" alt="Fiber Optic Illuminator" loading="lazy"></div><div class="prod-info"><div class="prod-name">Fiber Optic Illuminator</div><div class="prod-meta">LED light source</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0255.jpg" alt="Dual-Boom Stand" loading="lazy"></div><div class="prod-info"><div class="prod-name">Dual-Boom Stand</div><div class="prod-meta">Stainless dual-boom</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0257.jpg" alt="Track Stand" loading="lazy"></div><div class="prod-info"><div class="prod-name">Track Stand</div><div class="prod-meta">Vertical track with focus mount</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0240.jpg" alt="Dual-Boom Stand" loading="lazy"></div><div class="prod-info"><div class="prod-name">Dual-Boom Stand</div><div class="prod-meta">Stainless dual-boom</div><div class="prod-cta">Request info</div></div></a>
+      <a href="#" class="prod-card"><div class="prod-img-wrap"><img src="images/optica_0213.jpg" alt="Rework Boom Arm" loading="lazy"></div><div class="prod-info"><div class="prod-name">Rework Boom Arm</div><div class="prod-meta">Full-metal articulated boom</div><div class="prod-cta">Request info</div></div></a>
     </div>
   </div>
 
@@ -494,7 +550,7 @@ function scrollToCat(id, el) {
 }
 
 // Update active cat button on scroll
-const sections = ['stereo','digital','allinone','lamps','accessories'];
+const sections = ['binocular','trinocular','digital','ufa','magnifiers','accessories'];
 const catBtns = document.querySelectorAll('.cat-btn');
 
 window.addEventListener('scroll', () => {
