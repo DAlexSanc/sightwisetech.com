@@ -172,24 +172,22 @@ nav {
   padding: 3rem 4rem 6rem;
   position: relative;
 }
-/* OPTION A — full-bleed S-curve dividers */
+/* OPTION B — giant ghosted category codes */
 .products-body > * { position: relative; z-index: 1; }
 .cat-section { position: relative; }
-.cat-section:nth-child(even)::before,
-.cat-section:nth-child(odd)::before {
-  content: '';
+.cat-section .cat-ghost {
   position: absolute;
-  top: 30%;
-  width: 42vw; max-width: 620px;
-  aspect-ratio: 990 / 1400;
-  background: url('images/swt_background_a2.jpg') no-repeat center / contain;
-  opacity: 0.04;
+  top: -2.5rem; right: 0;
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(8rem, 18vw, 16rem);
+  line-height: 0.8;
+  color: var(--accent);
+  opacity: 0.05;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
+  letter-spacing: -0.04em;
 }
-.cat-section:nth-child(odd)::before { right: -16vw; transform: scaleX(1); }
-.cat-section:nth-child(even)::before { left: -16vw; transform: scaleX(-1); }
-[data-theme="dark"] .cat-section::before { filter: invert(1); opacity: 0.05; }
+[data-theme="dark"] .cat-section .cat-ghost { opacity: 0.07; }
 
 /* ── CATEGORY SECTION ── */
 .cat-section { margin-bottom: 5rem; scroll-margin-top: 140px; padding-bottom: 4rem; border-bottom: 1px solid var(--border); }
@@ -382,6 +380,7 @@ footer {
 
   <!-- BINOCULAR MICROSCOPES -->
   <div class="cat-section reveal" id="binocular">
+    <span class="cat-ghost" aria-hidden="true">BM</span>
     <div class="cat-header">
       <div class="cat-code">BM</div>
       <div>
@@ -402,6 +401,7 @@ footer {
 
   <!-- TRINOCULAR MICROSCOPES -->
   <div class="cat-section reveal" id="trinocular">
+    <span class="cat-ghost" aria-hidden="true">TM</span>
     <div class="cat-header">
       <div class="cat-code">TM</div>
       <div>
@@ -432,6 +432,7 @@ footer {
 
   <!-- DIGITAL MICROSCOPES -->
   <div class="cat-section reveal" id="digital">
+    <span class="cat-ghost" aria-hidden="true">DM</span>
     <div class="cat-header">
       <div class="cat-code">DM</div>
       <div>
@@ -452,6 +453,7 @@ footer {
 
   <!-- ULTRA FAST AUTOFOCUS MACRO VIDEO -->
   <div class="cat-section reveal" id="ufa">
+    <span class="cat-ghost" aria-hidden="true">UFA</span>
     <div class="cat-header">
       <div class="cat-code">UFA</div>
       <div>
@@ -474,6 +476,7 @@ footer {
 
   <!-- BENCH MAGNIFIERS -->
   <div class="cat-section reveal" id="magnifiers">
+    <span class="cat-ghost" aria-hidden="true">ML</span>
     <div class="cat-header">
       <div class="cat-code">ML</div>
       <div>
@@ -494,6 +497,7 @@ footer {
 
   <!-- SYSTEM ACCESSORIES -->
   <div class="cat-section reveal" id="accessories">
+    <span class="cat-ghost" aria-hidden="true">ACC</span>
     <div class="cat-header">
       <div class="cat-code">ACC</div>
       <div>
