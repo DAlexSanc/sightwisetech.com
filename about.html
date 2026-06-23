@@ -7,118 +7,314 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --accent: #0099cc; --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --mono: 'Share Tech Mono', monospace; --sans: 'Barlow', sans-serif; --cond: 'Barlow Condensed', sans-serif; }
-[data-theme="light"] { --bg: #f7f8fa; --bg2: #ffffff; --bg3: #eef0f4; --island: #12151a; --island2: #191d24; --island3: #1f242d; --border: #e2e5eb; --border2: #d0d4dc; --mid: #8a93a2; --text: #1a1e26; --text2: #5a6272; }
-[data-theme="dark"]  { --bg: #12151a; --bg2: #191d24; --bg3: #1f242d; --island: #191d24; --island2: #1f242d; --island3: #252b36; --border: #252b36; --border2: #2e3645; --mid: #6b7585; --text: #e4e8ef; --text2: #9aa3b0; }
+
+:root {
+  --accent: #0099cc;
+  --sans: 'Barlow', sans-serif;
+  --cond: 'Barlow Condensed', sans-serif;
+  --mono: 'Share Tech Mono', monospace;
+
+  --bg: #ffffff;
+  --bg-soft: #fafafa;
+  --ink: #111315;
+  --ink-2: #5a6068;
+  --ink-3: #9aa0a6;
+  --line: #ececec;
+  --line-2: #e0e0e0;
+
+  --dark: #111315;
+  --dark-2: #1b1e21;
+  --dark-ink: #f4f5f6;
+  --dark-ink-2: #8b9198;
+}
 
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; height: 64px; background: #12151a; border-bottom: 1px solid #1e2530; }
-.nav-logo { font-family: var(--cond); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.04em; color: #e4e8ef; text-decoration: none; }
-.nav-logo span { color: var(--accent); }
-.nav-logo-img { height: 30px; width: auto; display: block; }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover, .nav-links a.active { color: var(--accent); }
-.nav-right { display: flex; align-items: center; gap: 1rem; }
-.theme-toggle { width: 34px; height: 34px; border-radius: var(--r-sm); border: 1px solid #2a3040; background: #1a1f28; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #6b7585; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
+/* ---------- NAV : white, hairline border ---------- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px; padding: 0 3rem;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 26px; width: auto; display: block; }
+.nav-links { display: flex; gap: 2.25rem; list-style: none; }
+.nav-links a {
+  font-family: var(--sans); font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.01em; color: var(--ink-2); text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
+.nav-right { display: flex; align-items: center; gap: 1.25rem; }
+.theme-toggle {
+  width: 34px; height: 34px; border-radius: 7px;
+  border: 1px solid var(--line-2); background: var(--bg);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--ink-2); font-size: 14px; transition: border-color 0.15s, color 0.15s;
+}
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-.nav-cta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: var(--r-sm); padding: 7px 18px; text-decoration: none; transition: background 0.2s, color 0.2s; }
-.nav-cta:hover { background: var(--accent); color: #12151a; }
+.nav-cta {
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.01em; color: var(--bg); background: var(--ink);
+  padding: 9px 18px; border-radius: 7px; text-decoration: none;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--accent); }
 
-/* PAGE HEADER */
-.page-header { background: #12151a; padding: 8rem 4rem 5rem; position: relative; overflow: hidden; }
-.page-header-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,153,204,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,153,204,0.03) 1px, transparent 1px); background-size: 48px 48px; }
-.page-header-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
-.page-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
-.page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
-.page-title { font-family: var(--cond); font-weight: 700; font-size: clamp(2.2rem, 4vw, 3.5rem); color: #f5f7fa; line-height: 1.05; margin-bottom: 1rem; }
-.page-sub { font-size: 1rem; color: #6b7585; line-height: 1.7; }
+/* ---------- HERO ---------- */
+.hero {
+  padding: 11rem 3rem 5rem;
+  max-width: 1180px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 4rem; align-items: center;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(2.8rem, 5.2vw, 4.6rem); line-height: 0.98;
+  letter-spacing: -0.015em; color: var(--ink); margin-bottom: 1.6rem;
+}
+.hero h1 .thin { font-weight: 500; color: var(--ink-2); }
+.hero-sub {
+  font-size: 1.06rem; font-weight: 300; color: var(--ink-2);
+  line-height: 1.7; max-width: 430px; margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 0.9rem; align-items: center; flex-wrap: wrap; }
+.btn-solid {
+  font-size: 0.85rem; font-weight: 600; color: var(--bg); background: var(--ink);
+  padding: 13px 26px; border-radius: 8px; text-decoration: none; transition: background 0.15s;
+}
+.btn-solid:hover { background: var(--accent); }
+.btn-line {
+  font-size: 0.85rem; font-weight: 500; color: var(--ink);
+  padding: 13px 24px; border: 1px solid var(--line-2); border-radius: 8px;
+  text-decoration: none; transition: border-color 0.15s, color 0.15s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-line:hover { border-color: var(--ink); }
+.hero-visual { position: relative; }
+.hero-visual img {
+  width: 100%; height: auto; display: block;
+}
 
-.header-stat-row { display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-end; }
-.header-stat { text-align: right; }
-.header-stat-num { font-family: var(--cond); font-weight: 700; font-size: 2.8rem; color: #f5f7fa; line-height: 1; }
-.header-stat-num span { color: var(--accent); }
-.header-stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #6b7585; }
+/* ---------- STATS : quiet inline row ---------- */
+.stats {
+  max-width: 1180px; margin: 0 auto; padding: 0 3rem 5rem;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+.stat { padding-bottom: 0.5rem; }
+.stat-num {
+  font-family: var(--cond); font-weight: 700; font-size: 2.4rem;
+  color: var(--ink); line-height: 1;
+}
+.stat-num .u { color: var(--accent); }
+.stat-label {
+  font-size: 0.8rem; color: var(--ink-3); margin-top: 0.35rem; letter-spacing: 0.01em;
+}
 
-/* SECTIONS */
-section { padding: 6rem 4rem; }
-.section-inner { max-width: 1100px; margin: 0 auto; }
-.section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
-.section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
-.section-title { font-family: var(--cond); font-weight: 700; font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--text); line-height: 1.1; margin-bottom: 1rem; transition: color 0.3s; }
-.section-sub { font-size: 1rem; color: var(--text2); max-width: 580px; line-height: 1.7; transition: color 0.3s; }
+/* ---------- SECTION SHELL ---------- */
+.section { max-width: 1180px; margin: 0 auto; padding: 5.5rem 3rem; }
+.section-eyebrow {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.9rem;
+}
+.section-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+}
+.section-title {
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(1.9rem, 3.2vw, 2.7rem); line-height: 1.05;
+  letter-spacing: -0.01em; color: var(--ink);
+}
+.section-link {
+  font-size: 0.84rem; font-weight: 500; color: var(--ink-2); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 7px; transition: color 0.15s, gap 0.15s;
+}
+.section-link:hover { color: var(--accent); gap: 11px; }
 
-/* STORY */
-.story-section { background: var(--bg); transition: background 0.3s; }
-.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-.story-text { display: flex; flex-direction: column; gap: 1.2rem; }
-.story-p { font-size: 0.95rem; color: var(--text2); line-height: 1.8; transition: color 0.3s; }
-.story-p strong { color: var(--text); font-weight: 500; }
+/* ---------- PRODUCT GRID ---------- */
+.prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.prod-card {
+  background: var(--bg); border-radius: 12px; padding: 1.75rem;
+  text-decoration: none; color: inherit; display: block;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.prod-card:hover {
+  box-shadow: 0 10px 30px rgba(17,19,21,0.07);
+  transform: translateY(-3px);
+}
+.prod-name {
+  font-family: var(--cond); font-weight: 600; font-size: 1.18rem;
+  letter-spacing: 0.01em; color: var(--ink); margin-bottom: 0.45rem;
+}
+.prod-desc { font-size: 0.9rem; font-weight: 300; color: var(--ink-2); line-height: 1.6; }
+.prod-arrow {
+  margin-top: 1.4rem; font-family: var(--mono); font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: 7px; transition: gap 0.15s;
+}
+.prod-card:hover .prod-arrow { gap: 11px; }
 
-.story-timeline { display: flex; flex-direction: column; gap: 0; }
-.timeline-item { display: flex; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
-.timeline-item:first-child { padding-top: 0; }
-.timeline-year { font-family: var(--cond); font-weight: 700; font-size: 1.4rem; color: var(--accent); flex-shrink: 0; width: 60px; line-height: 1.2; }
-.timeline-content {}
-.timeline-title { font-family: var(--cond); font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.25rem; transition: color 0.3s; }
-.timeline-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; transition: color 0.3s; }
+/* ---------- INDUSTRIES : quiet text rows ---------- */
+.ind-section { background: var(--bg-soft); }
+.ind-wrap { max-width: 1180px; margin: 0 auto; padding: 5.5rem 3rem; }
+.ind-list { border-top: 1px solid var(--line-2); }
+.ind-row {
+  display: grid; grid-template-columns: 3rem 1fr 2fr; gap: 1.5rem; align-items: baseline;
+  padding: 1.6rem 0; border-bottom: 1px solid var(--line-2);
+  text-decoration: none; color: inherit; transition: padding-left 0.2s;
+}
+.ind-row:hover { padding-left: 0.75rem; }
+.ind-num { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); }
+.ind-name {
+  font-family: var(--cond); font-weight: 600; font-size: 1.3rem;
+  letter-spacing: 0.01em; color: var(--ink);
+}
+.ind-desc { font-size: 0.9rem; font-weight: 300; color: var(--ink-2); line-height: 1.55; }
 
-/* VALUES */
-.values-section { background: var(--bg2); transition: background 0.3s; }
-.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 3rem; }
-.value-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 2rem; transition: border-color 0.2s, background 0.3s; }
-.value-card:hover { border-color: var(--accent); }
-.value-icon { font-size: 1.6rem; margin-bottom: 1rem; }
-.value-title { font-family: var(--cond); font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0.5rem; transition: color 0.3s; }
-.value-desc { font-size: 0.875rem; color: var(--text2); line-height: 1.6; transition: color 0.3s; }
+/* ---------- WHY ---------- */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.why-list { display: flex; flex-direction: column; gap: 0; }
+.why-item { padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+.why-item:first-child { padding-top: 0; }
+.why-title {
+  font-family: var(--cond); font-weight: 600; font-size: 1.12rem;
+  color: var(--ink); margin-bottom: 0.35rem; letter-spacing: 0.01em;
+}
+.why-text { font-size: 0.92rem; font-weight: 300; color: var(--ink-2); line-height: 1.6; }
+.why-spec {
+  background: var(--bg-soft); border-radius: 12px; padding: 2.25rem;
+  position: sticky; top: 100px;
+}
+.why-spec-head {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 1.5rem;
+}
+.spec-row {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.7rem 0; border-bottom: 1px solid var(--line);
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-k { font-size: 0.82rem; color: var(--ink-3); }
+.spec-v { font-size: 0.88rem; color: var(--ink); font-weight: 500; text-align: right; }
 
-/* LOCATION — dark island */
-.location-section { background: var(--island); transition: background 0.3s; }
-.location-section .section-title { color: #e4e8ef; }
-.location-section .section-sub   { color: #6b7585; }
-.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+/* ---------- CTA : the one dark moment ---------- */
+.cta {
+  background: var(--dark); color: var(--dark-ink);
+  padding: 6rem 3rem; text-align: center;
+}
+.cta-inner { max-width: 640px; margin: 0 auto; }
+.cta h2 {
+  font-family: var(--cond); font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05;
+  letter-spacing: -0.01em; margin-bottom: 1rem;
+}
+.cta p { font-size: 1.02rem; font-weight: 300; color: var(--dark-ink-2); margin-bottom: 2.25rem; }
+.cta-btn {
+  font-size: 0.85rem; font-weight: 600; color: var(--dark); background: var(--bg);
+  padding: 14px 30px; border-radius: 8px; text-decoration: none;
+  display: inline-block; transition: background 0.15s, color 0.15s;
+}
+.cta-btn:hover { background: var(--accent); color: #fff; }
 
-.location-details { display: flex; flex-direction: column; gap: 1.5rem; }
-.location-item { display: flex; flex-direction: column; gap: 0.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
-.location-item:last-child { border-bottom: none; padding-bottom: 0; }
-.location-item-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #6b7585; }
-.location-item-value { font-size: 0.95rem; color: #e4e8ef; }
-
-.location-map-placeholder { background: var(--island2); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--r-lg); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; }
-.map-placeholder-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,153,204,0.4); }
-.map-placeholder-icon { font-size: 2rem; opacity: 0.3; }
-
-/* CTA */
-.cta-strip { background: var(--accent); padding: 4rem; text-align: center; }
-.cta-strip h2 { font-family: var(--cond); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem); color: #fff; margin-bottom: 0.6rem; }
-.cta-strip p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 2rem; }
-.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn-white { background: #fff; color: var(--accent); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 28px; border-radius: var(--r-sm); text-decoration: none; font-weight: 500; transition: opacity 0.2s; }
-.btn-white:hover { opacity: 0.88; }
-.btn-outline-white { background: transparent; color: #fff; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 28px; border-radius: var(--r-sm); border: 1px solid rgba(255,255,255,0.5); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
-.btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
-
-/* FOOTER */
-footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 4rem; }
-.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-.footer-logo { font-family: var(--cond); font-weight: 700; font-size: 1.1rem; color: #e4e8ef; }
-.footer-logo span { color: var(--accent); }
-.footer-links { display: flex; gap: 2rem; list-style: none; }
-.footer-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7585; text-decoration: none; transition: color 0.2s; }
+/* ---------- FOOTER : light ---------- */
+footer {
+  background: var(--bg); border-top: 1px solid var(--line);
+  padding: 2.5rem 3rem;
+}
+.footer-inner {
+  max-width: 1180px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1.25rem;
+}
+.footer-logo img { height: 20px; width: auto; display: block; opacity: 0.8; }
+.footer-links { display: flex; gap: 1.75rem; list-style: none; }
+.footer-links a {
+  font-size: 0.8rem; font-weight: 500; color: var(--ink-2);
+  text-decoration: none; transition: color 0.15s;
+}
 .footer-links a:hover { color: var(--accent); }
-.footer-copy { font-family: var(--mono); font-size: 10px; color: #6b7585; letter-spacing: 0.08em; }
+.footer-copy { font-size: 0.76rem; color: var(--ink-3); }
 
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+/* ---------- DARK THEME ---------- */
+[data-theme="dark"] {
+  --bg: #111315; --bg-soft: #181a1d; --ink: #f4f5f6; --ink-2: #9aa0a6;
+  --ink-3: #6a6f75; --line: #232629; --line-2: #2c2f33;
+}
+[data-theme="dark"] nav { background: rgba(17,19,21,0.92); }
+[data-theme="dark"] .nav-cta { color: #111315; background: var(--ink); }
+[data-theme="dark"] .nav-cta:hover { background: var(--accent); color: #fff; }
+[data-theme="dark"] .btn-solid { color: #111315; background: var(--ink); }
+[data-theme="dark"] .btn-solid:hover { background: var(--accent); color: #fff; }
+[data-theme="dark"] .cta { background: #000; }
+[data-theme="dark"] .nav-logo img,
+[data-theme="dark"] .footer-logo img { filter: invert(1) brightness(1.4); }
+
+/* ---------- REVEAL ---------- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 9rem; }
+  .hero-visual { order: -1; }
+  .stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2rem; }
+  .prod-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .why-spec { position: static; }
+  .ind-row { grid-template-columns: 2rem 1fr; }
+  .ind-desc { grid-column: 2; }
+  .nav-links { display: none; }
+}
+@media (max-width: 560px) {
+  .prod-grid { grid-template-columns: 1fr; }
+  nav, .hero, .stats, .section, .ind-wrap, .cta, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+.page-head { max-width: 1180px; margin: 0 auto; padding: 10rem 3rem 3rem; }
+.page-title-lg { font-family: var(--cond); font-weight: 700; font-size: clamp(2.4rem,5vw,3.6rem); line-height: 1.02; letter-spacing: -0.015em; margin-bottom: 1.2rem; max-width: 16ch; }
+.page-intro { font-size: 1.05rem; font-weight: 300; color: var(--ink-2); max-width: 560px; line-height: 1.7; }
+.story { max-width: 1180px; margin: 0 auto; padding: 4rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; border-top: 1px solid var(--line); }
+.story p { font-size: 0.98rem; font-weight: 300; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.1rem; }
+.story p strong { color: var(--ink); font-weight: 500; }
+.timeline { display: flex; flex-direction: column; }
+.tl-item { display: grid; grid-template-columns: 4rem 1fr; gap: 1.25rem; padding: 1.2rem 0; border-bottom: 1px solid var(--line); }
+.tl-item:first-child { padding-top: 0; }
+.tl-year { font-family: var(--cond); font-weight: 700; font-size: 1.2rem; color: var(--accent); }
+.tl-title { font-family: var(--cond); font-weight: 600; font-size: 1rem; margin-bottom: 0.2rem; }
+.tl-desc { font-size: 0.86rem; font-weight: 300; color: var(--ink-2); line-height: 1.55; }
+.values { background: var(--bg-soft); }
+.values-wrap { max-width: 1180px; margin: 0 auto; padding: 5rem 3rem; }
+.values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; margin-top: 2.5rem; }
+.value-title { font-family: var(--cond); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.4rem; }
+.value-desc { font-size: 0.88rem; font-weight: 300; color: var(--ink-2); line-height: 1.6; }
+.loc { max-width: 1180px; margin: 0 auto; padding: 5rem 3rem; }
+.loc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+.loc-k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
+.loc-v { font-size: 0.92rem; color: var(--ink); }
+.loc-v a { color: var(--accent); text-decoration: none; }
+@media (max-width: 820px) { .story { grid-template-columns: 1fr; gap: 2.5rem; } .values-grid { grid-template-columns: 1fr; gap: 1.5rem; } .loc-grid { grid-template-columns: 1fr 1fr; } .page-head,.story,.values-wrap,.loc { padding-left:1.5rem; padding-right:1.5rem; } }
+
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="index.html" class="nav-logo"><img src="images/logo-white-ink.png" alt="SightwiseTech" class="nav-logo-img"></a>
+  <a href="index.html" class="nav-logo"><img src="images/logo-dark-ink.png" alt="SightwiseTech"></a>
   <ul class="nav-links">
     <li><a href="products.html">Products</a></li>
     <li><a href="applications.html">Applications</a></li>
@@ -126,188 +322,58 @@ footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padd
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">☀</button>
-    <a href="contact.html" class="nav-cta">Request Quote</a>
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">☾</button>
+    <a href="contact.html" class="nav-cta">Request quote</a>
   </div>
 </nav>
-
-<div class="page-header">
-  <div class="page-header-grid"></div>
-  <div class="page-header-inner">
-    <div>
-      <div class="page-eyebrow">Who we are</div>
-      <h1 class="page-title">Built by Engineers,<br>for the Factory Floor</h1>
-      <p class="page-sub">SightwiseTech was founded on the conviction that industrial inspection should be accessible, intelligent, and backed by people who have actually worked in manufacturing.</p>
-    </div>
-    <div class="header-stat-row">
-      <div class="header-stat">
-        <div class="header-stat-num">9<span>+</span></div>
-        <div class="header-stat-label">Years in manufacturing</div>
-      </div>
-      <div class="header-stat">
-        <div class="header-stat-num">5</div>
-        <div class="header-stat-label">Industries served</div>
-      </div>
-      <div class="header-stat">
-        <div class="header-stat-num">GDL</div>
-        <div class="header-stat-label">Based in Guadalajara, MX</div>
-      </div>
-    </div>
-  </div>
+<div class="page-head">
+  <div class="section-eyebrow">Who we are</div>
+  <h1 class="page-title-lg">Built by engineers, for the factory floor</h1>
+  <p class="page-intro">SightwiseTech was founded on the conviction that industrial inspection should be accessible, intelligent, and backed by people who have actually worked in manufacturing.</p>
 </div>
-
-<!-- STORY -->
-<section class="story-section">
-  <div class="section-inner">
-    <div class="story-grid reveal">
-      <div>
-        <div class="section-label">Our story</div>
-        <h2 class="section-title">From the Shop Floor<br>to the Startup</h2>
-        <div class="story-text" style="margin-top: 1.5rem;">
-          <p class="story-p">SightwiseTech grew out of <strong>nearly a decade of hands-on manufacturing experience</strong> — starting as a field service engineer and progressing through automation, robotics, and systems integration roles across the industry.</p>
-          <p class="story-p">That background made one thing clear: most manufacturers needed <strong>better visibility into their process</strong> — not more complexity. The inspection tools on the market were either too simple, too expensive, or too disconnected from real production constraints.</p>
-          <p class="story-p">We founded SightwiseTech in Guadalajara to change that. We distribute and configure <strong>precision optical and digital inspection systems</strong>, and we build our own AI-powered software tools to complement them — designed to be deployed and understood by engineers on the floor, not just specialists.</p>
-          <p class="story-p">We serve the manufacturing industries that define the Jalisco and wider Mexican industrial economy: electronics, medical devices, aerospace, metal-mechanical, and automotive.</p>
-        </div>
-      </div>
-      <div>
-        <div class="section-label">Timeline</div>
-        <div class="timeline-item" style="margin-top:1rem;">
-          <div class="timeline-year">2016</div>
-          <div class="timeline-content">
-            <div class="timeline-title">First steps in manufacturing</div>
-            <div class="timeline-desc">Started as a field service engineer at 16 — first exposure to industrial equipment, automation, and production environments.</div>
-          </div>
-        </div>
-        <div class="story-timeline">
-          <div class="timeline-item">
-            <div class="timeline-year">2019</div>
-            <div class="timeline-content">
-              <div class="timeline-title">Automation & robotics roles</div>
-              <div class="timeline-desc">Progressed into automation integration and robotics — working across multiple industries and manufacturing contexts in the region.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2022</div>
-            <div class="timeline-content">
-              <div class="timeline-title">Vision & inspection focus</div>
-              <div class="timeline-desc">Deep work in machine vision, camera systems, and inspection pipelines — identifying a gap in accessible, locally-supported inspection solutions for Mexican manufacturers.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2024</div>
-            <div class="timeline-content">
-              <div class="timeline-title">SightwiseTech founded</div>
-              <div class="timeline-desc">Launched in Guadalajara as a distribution and integration business for optical and digital inspection systems, with in-house AI software development.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2025</div>
-            <div class="timeline-content">
-              <div class="timeline-title">TRAINR & INSPECTR launched</div>
-              <div class="timeline-desc">First proprietary software tools released — TRAINR for model training and export, INSPECTR for edge AI inspection deployment on Hailo hardware.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">Now</div>
-            <div class="timeline-content">
-              <div class="timeline-title">Growing the catalogue & team</div>
-              <div class="timeline-desc">Expanding the product range, building the distribution network, and deepening partnerships with manufacturers across Jalisco and beyond.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<section class="story">
+  <div>
+    <p>SightwiseTech grew out of <strong>nearly a decade of hands-on manufacturing experience</strong> — starting in field service and moving through automation, robotics, and systems integration.</p>
+    <p>That background made one thing clear: most manufacturers needed <strong>better visibility into their process</strong>, not more complexity. The tools on the market were too simple, too expensive, or too disconnected from real production.</p>
+    <p>We distribute and configure <strong>precision optical and digital inspection systems</strong>, and build our own software tools to complement them — designed to be used by engineers on the floor, not just specialists.</p>
+    <p>We serve the industries that define Mexican manufacturing: electronics, medical devices, aerospace, metal-mechanical, and automotive.</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item"><span class="tl-year">2016</span><div><div class="tl-title">First steps in manufacturing</div><div class="tl-desc">Field service engineering — first exposure to industrial equipment and automation.</div></div></div>
+    <div class="tl-item"><span class="tl-year">2019</span><div><div class="tl-title">Automation & robotics</div><div class="tl-desc">Integration roles across multiple industries in the region.</div></div></div>
+    <div class="tl-item"><span class="tl-year">2022</span><div><div class="tl-title">Vision & inspection focus</div><div class="tl-desc">Deep work in machine vision and inspection pipelines.</div></div></div>
+    <div class="tl-item"><span class="tl-year">2024</span><div><div class="tl-title">SightwiseTech founded</div><div class="tl-desc">Launched in Guadalajara for optical and digital inspection systems.</div></div></div>
+    <div class="tl-item"><span class="tl-year">Now</span><div><div class="tl-title">Growing the catalogue</div><div class="tl-desc">Expanding the range and deepening partnerships across México and beyond.</div></div></div>
+  </div>
+</section>
+<section class="values">
+  <div class="values-wrap">
+    <div class="section-eyebrow">What we stand for</div>
+    <h2 class="section-title">Our principles</h2>
+    <div class="values-grid">
+      <div><div class="value-title">Engineering first</div><div class="value-desc">Every recommendation is backed by real technical knowledge. We won't sell what doesn't fit your process.</div></div>
+      <div><div class="value-title">Local accountability</div><div class="value-desc">Based in Guadalajara — reachable in your time zone, your language, on-site when it matters.</div></div>
+      <div><div class="value-title">Configurable, not rigid</div><div class="value-desc">We configure systems around your application, budget, and constraints — not fixed SKUs.</div></div>
+      <div><div class="value-title">Practical tools</div><div class="value-desc">Software and systems that work in real production environments, not demos.</div></div>
+      <div><div class="value-title">Long-term partnership</div><div class="value-desc">Honest advice and support that outlasts the invoice.</div></div>
+      <div><div class="value-title">Made for Mexican industry</div><div class="value-desc">We understand import logistics, budgets, and the pace of the sector.</div></div>
     </div>
   </div>
 </section>
-
-<!-- VALUES -->
-<section class="values-section">
-  <div class="section-inner">
-    <div class="section-label">What we stand for</div>
-    <h2 class="section-title">Our Principles</h2>
-    <div class="values-grid reveal">
-      <div class="value-card">
-        <div class="value-icon">🔬</div>
-        <div class="value-title">Engineering first</div>
-        <p class="value-desc">Every recommendation we make is backed by real technical knowledge. We won't sell you something that doesn't fit your process.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">🤝</div>
-        <div class="value-title">Local accountability</div>
-        <p class="value-desc">Based in Guadalajara, we're reachable in your time zone, in your language, and on-site when it matters. No overseas support tickets.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">⚡</div>
-        <div class="value-title">Practical AI</div>
-        <p class="value-desc">We build AI tools that work in real production environments — not demos. Onboarding a new product should take hours, not months.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">🔧</div>
-        <div class="value-title">Configurable, not rigid</div>
-        <p class="value-desc">We don't push fixed SKUs. We configure systems around your application, your budget, and your production constraints.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">📈</div>
-        <div class="value-title">Long-term partnership</div>
-        <p class="value-desc">We want to be your inspection supplier for years, not just a one-time sale. That means honest advice and support that outlasts the invoice.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">🌎</div>
-        <div class="value-title">Made for Mexican industry</div>
-        <p class="value-desc">We understand the specific challenges of manufacturing in Mexico — import logistics, budget constraints, and the pace of Jalisco's industrial sector.</p>
-      </div>
-    </div>
+<section class="loc">
+  <div class="section-eyebrow">Where we are</div>
+  <h2 class="section-title">Guadalajara, Jalisco</h2>
+  <div class="loc-grid">
+    <div><div class="loc-k">Headquarters</div><div class="loc-v">Guadalajara, Jalisco — México</div></div>
+    <div><div class="loc-k">Service area</div><div class="loc-v">México · United States · Argentina · Brazil</div></div>
+    <div><div class="loc-k">Languages</div><div class="loc-v">Spanish · English · Portuguese</div></div>
+    <div><div class="loc-k">Email</div><div class="loc-v"><a href="mailto:diego.sanchez@sightwisetech.com">diego.sanchez@sightwisetech.com</a></div></div>
   </div>
 </section>
-
-<!-- LOCATION -->
-<section class="location-section">
-  <div class="section-inner">
-    <div class="section-label">Where we are</div>
-    <h2 class="section-title">Guadalajara, Jalisco</h2>
-    <p class="section-sub">At the heart of Mexico's largest technology and manufacturing hub — close to the customers we serve.</p>
-    <div class="location-grid reveal">
-      <div class="location-details">
-        <div class="location-item">
-          <span class="location-item-label">Headquarters</span>
-          <span class="location-item-value">Guadalajara, Jalisco — México</span>
-        </div>
-        <div class="location-item">
-          <span class="location-item-label">Service area</span>
-          <span class="location-item-value">Mexico · United States · Argentina · Brazil</span>
-        </div>
-        <div class="location-item">
-          <span class="location-item-label">Languages</span>
-          <span class="location-item-value">Spanish · English · Portuguese</span>
-        </div>
-        <div class="location-item">
-          <span class="location-item-label">Email</span>
-          <span class="location-item-value"><a href="mailto:diego.sanchez@sightwisetech.com" style="color:var(--accent);text-decoration:none;">diego.sanchez@sightwisetech.com</a></span>
-        </div>
-      </div>
-      <div class="location-map-placeholder">
-        <div class="map-placeholder-icon">📍</div>
-        <div class="map-placeholder-label">Guadalajara, Jalisco · México</div>
-        <!-- Optional: embed Google Maps iframe here later -->
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<div class="cta-strip">
-  <h2>Let's work together</h2>
-  <p>Whether you need a system, a quote, or just a conversation about your inspection challenge.</p>
-  <div class="cta-actions">
-    <a href="contact.html" class="btn-white">Get in touch</a>
-    <a href="products.html" class="btn-outline-white">View products</a>
-  </div>
-</div>
-
+<section class="cta"><div class="cta-inner"><h2>Let's work together</h2><p>Whether you need a system, a quote, or a conversation about your inspection challenge.</p><a href="contact.html" class="cta-btn">Get in touch</a></div></section>
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">Sightwise<span>Tech</span></div>
+    <a href="index.html" class="footer-logo"><img src="images/logo-dark-ink.png" alt="SightwiseTech"></a>
     <ul class="footer-links">
       <li><a href="products.html">Products</a></li>
       <li><a href="applications.html">Applications</a></li>
@@ -317,12 +383,17 @@ footer { background: #12151a; border-top: 1px solid rgba(255,255,255,0.06); padd
     <div class="footer-copy">© 2026 SightwiseTech — Guadalajara, MX</div>
   </div>
 </footer>
-
 <script>
 const btn = document.getElementById('themeBtn');
 const html = document.documentElement;
-btn.addEventListener('click', () => { const d = html.getAttribute('data-theme') === 'dark'; html.setAttribute('data-theme', d ? 'light' : 'dark'); btn.textContent = d ? '☀' : '☾'; });
-const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.05 });
+btn.addEventListener('click', () => {
+  const dark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', dark ? 'light' : 'dark');
+  btn.textContent = dark ? '☾' : '☀';
+});
+const obs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+}), { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
