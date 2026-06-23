@@ -217,8 +217,16 @@ nav {
 .cta {
   background: var(--dark); color: var(--dark-ink);
   padding: 6rem 3rem; text-align: center;
+  position: relative; overflow: hidden;
 }
-.cta-inner { max-width: 640px; margin: 0 auto; }
+.cta::before {
+  content: ''; position: absolute;
+  top: 50%; right: -3%; transform: translateY(-50%);
+  width: 380px; height: 530px;
+  background: url('images/swt_s_ink_white.png') no-repeat center / contain;
+  opacity: 0.08; pointer-events: none;
+}
+.cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
 .cta h2 {
   font-family: var(--cond); font-weight: 700;
   font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05;
