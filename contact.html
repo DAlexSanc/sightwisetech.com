@@ -343,7 +343,7 @@ footer {
     <p class="contact-sub">Tell us about your application and we'll configure the right system — or just reach out with a question.</p>
     <div class="contact-meta">
       <div class="cmeta-row"><div class="cmeta-k">Response</div><div class="cmeta-v">Typically within 24 hours · Mon–Fri</div></div>
-      <div class="cmeta-row"><div class="cmeta-k">Email</div><div class="cmeta-v"><a href="mailto:diego.sanchez@sightwisetech.com">diego.sanchez@sightwisetech.com</a></div></div>
+      <div class="cmeta-row"><div class="cmeta-k">Email</div><div class="cmeta-v"><a href="mailto:contact@sightwisetech.com">contact@sightwisetech.com</a></div></div>
       <div class="cmeta-row"><div class="cmeta-k">Location</div><div class="cmeta-v">Guadalajara, Jalisco — México</div></div>
       <div class="cmeta-row"><div class="cmeta-k">Languages</div><div class="cmeta-v">Spanish · English · Portuguese</div></div>
     </div>
@@ -423,8 +423,8 @@ form.addEventListener('submit', async (e) => {
   try {
     const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
     if (res.ok) { form.style.display='none'; success.style.display='block'; }
-    else { submitBtn.disabled=false; submitBtn.textContent='Send message →'; alert('Something went wrong — email us directly at diego.sanchez@sightwisetech.com'); }
-  } catch { submitBtn.disabled=false; submitBtn.textContent='Send message →'; alert('Something went wrong — email us directly at diego.sanchez@sightwisetech.com'); }
+    else { submitBtn.disabled=false; submitBtn.textContent='Send message →'; alert('Something went wrong — email us directly at contact@sightwisetech.com'); }
+  } catch { submitBtn.disabled=false; submitBtn.textContent='Send message →'; alert('Something went wrong — email us directly at contact@sightwisetech.com'); }
 });
 </script>
 </body>
