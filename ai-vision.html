@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — SightwiseTech</title>
+<title>AI Vision — SightwiseTech</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -226,7 +226,7 @@ nav {
   background: url('images/swt_s_ink_white.png') no-repeat center / contain;
   opacity: 0.08; pointer-events: none;
 }
-.cta-inner { max-width: 640px; margin: 0 auto;  position: relative; z-index: 1;}
+.cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
 .cta h2 {
   font-family: var(--cond); font-weight: 700;
   font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05;
@@ -294,29 +294,50 @@ footer {
   nav, .hero, .stats, .section, .ind-wrap, .cta, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
 }
 
-.page-head { max-width: 1180px; margin: 0 auto; padding: 10rem 3rem 3rem; }
-.page-title-lg { font-family: var(--cond); font-weight: 700; font-size: clamp(2.4rem,5vw,3.6rem); line-height: 1.02; letter-spacing: -0.015em; margin-bottom: 1.2rem; max-width: 16ch; }
-.page-intro { font-size: 1.05rem; font-weight: 300; color: var(--ink-2); max-width: 560px; line-height: 1.7; }
-.story { max-width: 1180px; margin: 0 auto; padding: 4rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; border-top: 1px solid var(--line); }
-.story p { font-size: 0.98rem; font-weight: 300; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.1rem; }
-.story p strong { color: var(--ink); font-weight: 500; }
-.timeline { display: flex; flex-direction: column; }
-.tl-item { display: grid; grid-template-columns: 4rem 1fr; gap: 1.25rem; padding: 1.2rem 0; border-bottom: 1px solid var(--line); }
-.tl-item:first-child { padding-top: 0; }
-.tl-year { font-family: var(--cond); font-weight: 700; font-size: 1.2rem; color: var(--accent); }
-.tl-title { font-family: var(--cond); font-weight: 600; font-size: 1rem; margin-bottom: 0.2rem; }
-.tl-desc { font-size: 0.86rem; font-weight: 300; color: var(--ink-2); line-height: 1.55; }
-.values { background: var(--bg-soft); }
-.values-wrap { max-width: 1180px; margin: 0 auto; padding: 5rem 3rem; }
-.values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; margin-top: 2.5rem; }
-.value-title { font-family: var(--cond); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.4rem; }
-.value-desc { font-size: 0.88rem; font-weight: 300; color: var(--ink-2); line-height: 1.6; }
-.loc { max-width: 1180px; margin: 0 auto; padding: 5rem 3rem; }
-.loc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 2rem; }
-.loc-k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
-.loc-v { font-size: 0.92rem; color: var(--ink); }
-.loc-v a { color: var(--accent); text-decoration: none; }
-@media (max-width: 820px) { .story { grid-template-columns: 1fr; gap: 2.5rem; } .values-grid { grid-template-columns: 1fr; gap: 1.5rem; } .loc-grid { grid-template-columns: 1fr 1fr; } .page-head,.story,.values-wrap,.loc { padding-left:1.5rem; padding-right:1.5rem; } }
+/* AI Vision page */
+.ai-hero { max-width: 1180px; margin: 0 auto; padding: 10rem 3rem 4rem; }
+.ai-hero-eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; }
+.ai-hero h1 { font-family: var(--cond); font-weight: 700; font-size: clamp(2.6rem,5.5vw,4.2rem); line-height: 1; letter-spacing: -0.015em; margin-bottom: 1.4rem; max-width: 16ch; }
+.ai-hero h1 .thin { font-weight: 500; color: var(--ink-2); }
+.ai-hero-sub { font-size: 1.1rem; font-weight: 300; color: var(--ink-2); line-height: 1.7; max-width: 560px; }
+
+/* benefit cards */
+.ai-benefits { max-width: 1180px; margin: 0 auto; padding: 3rem 3rem 5rem; }
+.ai-ben-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.ai-ben { background: var(--bg-soft); border-radius: 12px; padding: 2rem; }
+.ai-ben-k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.ai-ben-title { font-family: var(--cond); font-weight: 600; font-size: 1.25rem; letter-spacing: 0.01em; margin-bottom: 0.5rem; }
+.ai-ben-desc { font-size: 0.92rem; font-weight: 300; color: var(--ink-2); line-height: 1.65; }
+
+/* how it works - dark band */
+.ai-how { background: var(--dark); color: var(--dark-ink); position: relative; overflow: hidden; }
+.ai-how::before { content:''; position:absolute; top:50%; right:-4%; transform:translateY(-50%); width:440px; height:610px; background:url('images/swt_s_ink_white.png') no-repeat center / contain; opacity:0.06; pointer-events:none; }
+.ai-how-wrap { max-width: 1180px; margin: 0 auto; padding: 5.5rem 3rem; position: relative; z-index: 1; }
+.ai-how-eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dark-ink-2); margin-bottom: 1rem; }
+.ai-how h2 { font-family: var(--cond); font-weight: 700; font-size: clamp(1.9rem,3.5vw,2.8rem); letter-spacing: -0.01em; margin-bottom: 3rem; max-width: 18ch; }
+.ai-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+.ai-step { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.2rem; }
+.ai-step-num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 0.7rem; }
+.ai-step-title { font-family: var(--cond); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.4rem; }
+.ai-step-desc { font-size: 0.86rem; font-weight: 300; color: var(--dark-ink-2); line-height: 1.6; }
+
+/* comparison / where it fits */
+.ai-fit { max-width: 1180px; margin: 0 auto; padding: 5.5rem 3rem; }
+.ai-fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 2.5rem; }
+.ai-fit-list { display:flex; flex-direction:column; }
+.ai-fit-item { padding: 1.3rem 0; border-bottom: 1px solid var(--line); }
+.ai-fit-item:first-child { padding-top: 0; }
+.ai-fit-q { font-family: var(--cond); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.35rem; }
+.ai-fit-a { font-size: 0.9rem; font-weight: 300; color: var(--ink-2); line-height: 1.6; }
+.ai-note { background: var(--bg-soft); border-radius: 12px; padding: 2.25rem; font-size: 0.95rem; font-weight: 300; color: var(--ink-2); line-height: 1.75; }
+.ai-note strong { color: var(--ink); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .ai-ben-grid { grid-template-columns: 1fr; }
+  .ai-steps { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+  .ai-fit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .ai-hero, .ai-benefits, .ai-how-wrap, .ai-fit { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
 
 </style>
 </head>
@@ -326,8 +347,8 @@ footer {
   <ul class="nav-links">
     <li><a href="products.html">Products</a></li>
     <li><a href="applications.html">Applications</a></li>
-    <li><a href="ai-vision.html">AI Vision</a></li>
-    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="ai-vision.html" class="active">AI Vision</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -335,58 +356,119 @@ footer {
     <a href="contact.html" class="nav-cta">Request quote</a>
   </div>
 </nav>
-<div class="page-head">
-  <div class="section-eyebrow">Who we are</div>
-  <h1 class="page-title-lg">Built by engineers, for the factory floor</h1>
-  <p class="page-intro">SightwiseTech was founded on the conviction that industrial inspection should be accessible, intelligent, and backed by people who have actually worked in manufacturing.</p>
+<div class="ai-hero">
+  <div class="ai-hero-eyebrow">AI Vision</div>
+  <h1>Inspection that <span class="thin">learns</span> your product</h1>
+  <p class="ai-hero-sub">Our vision systems can be equipped with AI-assisted defect detection — trained on your parts, running at the inspection station, flagging what matters without slowing the line.</p>
 </div>
-<section class="story">
-  <div>
-    <p>SightwiseTech grew out of <strong>nearly a decade of hands-on manufacturing experience</strong> — starting in field service and moving through automation, robotics, and systems integration.</p>
-    <p>That background made one thing clear: most manufacturers needed <strong>better visibility into their process</strong>, not more complexity. The tools on the market were too simple, too expensive, or too disconnected from real production.</p>
-    <p>We distribute and configure <strong>precision optical and digital inspection systems</strong>, and build our own software tools to complement them — designed to be used by engineers on the floor, not just specialists.</p>
-    <p>We serve the industries that define Mexican manufacturing: electronics, medical devices, aerospace, metal-mechanical, and automotive.</p>
+
+<div class="ai-benefits">
+  <div class="ai-ben-grid reveal">
+    <div class="ai-ben">
+      <div class="ai-ben-k">Onboarding</div>
+      <div class="ai-ben-title">Ready in hours, not weeks</div>
+      <div class="ai-ben-desc">Bring a new product online with a small set of reference images. No labeling teams, no data-science project — just show the system what good looks like.</div>
+    </div>
+    <div class="ai-ben">
+      <div class="ai-ben-k">Consistency</div>
+      <div class="ai-ben-title">The same standard every shift</div>
+      <div class="ai-ben-desc">Human inspectors tire and drift. An AI-assisted station applies the same criteria at 9am and 9pm, across operators, without fatigue.</div>
+    </div>
+    <div class="ai-ben">
+      <div class="ai-ben-k">Speed</div>
+      <div class="ai-ben-title">Real-time at the station</div>
+      <div class="ai-ben-desc">Analysis happens locally, in the moment — a clear pass or fail with the defect highlighted, fast enough to keep pace with production.</div>
+    </div>
+    <div class="ai-ben">
+      <div class="ai-ben-k">Adaptability</div>
+      <div class="ai-ben-title">Handles the unexpected</div>
+      <div class="ai-ben-desc">Beyond known defect types, the system can flag anomalies it hasn't seen before — the scratches, stains, and deviations that rule-based checks miss.</div>
+    </div>
+    <div class="ai-ben">
+      <div class="ai-ben-k">Privacy</div>
+      <div class="ai-ben-title">Your data stays with you</div>
+      <div class="ai-ben-desc">Inspection runs on-site. Your product images and process data never have to leave the factory floor.</div>
+    </div>
+    <div class="ai-ben">
+      <div class="ai-ben-k">Documentation</div>
+      <div class="ai-ben-title">A record of every part</div>
+      <div class="ai-ben-desc">Pass/fail results and defect maps can be captured for traceability — useful where audit trails and quality records are required.</div>
+    </div>
   </div>
-  <div class="timeline">
-    <div class="tl-item"><span class="tl-year">2016</span><div><div class="tl-title">First steps in manufacturing</div><div class="tl-desc">Field service engineering — first exposure to industrial equipment and automation.</div></div></div>
-    <div class="tl-item"><span class="tl-year">2019</span><div><div class="tl-title">Automation & robotics</div><div class="tl-desc">Integration roles across multiple industries in the region.</div></div></div>
-    <div class="tl-item"><span class="tl-year">2022</span><div><div class="tl-title">Vision & inspection focus</div><div class="tl-desc">Deep work in machine vision and inspection pipelines.</div></div></div>
-    <div class="tl-item"><span class="tl-year">2024</span><div><div class="tl-title">SightwiseTech founded</div><div class="tl-desc">Launched in Guadalajara for optical and digital inspection systems.</div></div></div>
-    <div class="tl-item"><span class="tl-year">Now</span><div><div class="tl-title">Growing the catalogue</div><div class="tl-desc">Expanding the range and deepening partnerships across México and beyond.</div></div></div>
-  </div>
-</section>
-<section class="values">
-  <div class="values-wrap">
-    <div class="section-eyebrow">What we stand for</div>
-    <h2 class="section-title">Our principles</h2>
-    <div class="values-grid">
-      <div><div class="value-title">Engineering first</div><div class="value-desc">Every recommendation is backed by real technical knowledge. We won't sell what doesn't fit your process.</div></div>
-      <div><div class="value-title">Local accountability</div><div class="value-desc">Based in Guadalajara — reachable in your time zone, your language, on-site when it matters.</div></div>
-      <div><div class="value-title">Configurable, not rigid</div><div class="value-desc">We configure systems around your application, budget, and constraints — not fixed SKUs.</div></div>
-      <div><div class="value-title">Practical tools</div><div class="value-desc">Software and systems that work in real production environments, not demos.</div></div>
-      <div><div class="value-title">Long-term partnership</div><div class="value-desc">Honest advice and support that outlasts the invoice.</div></div>
-      <div><div class="value-title">Made for Mexican industry</div><div class="value-desc">We understand import logistics, budgets, and the pace of the sector.</div></div>
+</div>
+
+<section class="ai-how">
+  <div class="ai-how-wrap">
+    <div class="ai-how-eyebrow">How it works</div>
+    <h2>From reference images to a working inspection station</h2>
+    <div class="ai-steps reveal">
+      <div class="ai-step">
+        <div class="ai-step-num">01</div>
+        <div class="ai-step-title">Capture</div>
+        <div class="ai-step-desc">We image your parts on the same optics you'll run in production, so the system learns under real conditions.</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">02</div>
+        <div class="ai-step-title">Train</div>
+        <div class="ai-step-desc">A model is built around your product using our in-house toolchain — tuned to your defects and tolerances.</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">03</div>
+        <div class="ai-step-title">Deploy</div>
+        <div class="ai-step-desc">The trained model runs locally at the inspection station, analyzing each part as it's presented.</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">04</div>
+        <div class="ai-step-title">Refine</div>
+        <div class="ai-step-desc">As you run, the system can be retrained on new examples — accuracy improves with your process.</div>
+      </div>
     </div>
   </div>
 </section>
-<section class="loc">
-  <div class="section-eyebrow">Where we are</div>
-  <h2 class="section-title">Guadalajara, Jalisco</h2>
-  <div class="loc-grid">
-    <div><div class="loc-k">Headquarters</div><div class="loc-v">Guadalajara, Jalisco — México</div></div>
-    <div><div class="loc-k">Service area</div><div class="loc-v">México · United States · Argentina · Brazil</div></div>
-    <div><div class="loc-k">Languages</div><div class="loc-v">Spanish · English · Portuguese</div></div>
-    <div><div class="loc-k">Email</div><div class="loc-v"><a href="mailto:contact@sightwisetech.com">contact@sightwisetech.com</a></div></div>
+
+<div class="ai-fit">
+  <div class="section-eyebrow">Is it right for you?</div>
+  <h2 class="section-title">Where AI vision fits</h2>
+  <div class="ai-fit-grid">
+    <div class="ai-fit-list reveal">
+      <div class="ai-fit-item">
+        <div class="ai-fit-q">High-volume, repetitive inspection</div>
+        <div class="ai-fit-a">If operators are checking the same features on thousands of parts, automation pays off fast.</div>
+      </div>
+      <div class="ai-fit-item">
+        <div class="ai-fit-q">Cosmetic & surface defects</div>
+        <div class="ai-fit-a">Scratches, stains, dents, and finish issues that are hard to specify with fixed rules.</div>
+      </div>
+      <div class="ai-fit-item">
+        <div class="ai-fit-q">Consistency requirements</div>
+        <div class="ai-fit-a">When pass/fail decisions need to be identical regardless of who's on shift.</div>
+      </div>
+      <div class="ai-fit-item">
+        <div class="ai-fit-q">Frequent product changes</div>
+        <div class="ai-fit-a">Fast onboarding means new products don't mean months of re-engineering.</div>
+      </div>
+    </div>
+    <div class="ai-note reveal">
+      <p>AI vision is an <strong>option</strong>, not a requirement. Many of our systems ship as purely optical or digital inspection tools — and that's the right answer for plenty of applications.</p>
+      <p style="margin-top:1rem;">Where it fits, we configure it around your process. Where it doesn't, we'll tell you. The <strong>specifics of our approach</strong> — models, hardware, and pipeline — we're happy to walk through directly with teams evaluating a deployment.</p>
+    </div>
+  </div>
+</div>
+
+<section class="cta">
+  <div class="cta-inner">
+    <h2>Curious whether AI fits your line?</h2>
+    <p>Tell us what you're inspecting and we'll give you a straight answer.</p>
+    <a href="contact.html" class="cta-btn">Start a conversation</a>
   </div>
 </section>
-<section class="cta"><div class="cta-inner"><h2>Let's work together</h2><p>Whether you need a system, a quote, or a conversation about your inspection challenge.</p><a href="contact.html" class="cta-btn">Get in touch</a></div></section>
 <footer>
   <div class="footer-inner">
     <a href="index.html" class="footer-logo"><img src="images/logo-dark-ink.png" alt="SightwiseTech"></a>
     <ul class="footer-links">
       <li><a href="products.html">Products</a></li>
       <li><a href="applications.html">Applications</a></li>
-    <li><a href="ai-vision.html">AI Vision</a></li>
+      <li><a href="ai-vision.html">AI Vision</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -396,14 +478,8 @@ footer {
 <script>
 const btn = document.getElementById('themeBtn');
 const html = document.documentElement;
-btn.addEventListener('click', () => {
-  const dark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', dark ? 'light' : 'dark');
-  btn.textContent = dark ? '☾' : '☀';
-});
-const obs = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-}), { threshold: 0.08 });
+btn.addEventListener('click', () => { const d = html.getAttribute('data-theme')==='dark'; html.setAttribute('data-theme', d?'light':'dark'); btn.textContent = d?'☾':'☀'; });
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
